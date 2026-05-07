@@ -4,7 +4,9 @@ import ZAI from 'z-ai-web-dev-sdk';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { product } = body;
+
+    // Accept both { product: {...} } and flat { name, description, ... }
+    const product = body.product ?? body;
 
     if (!product || !product.name) {
       return NextResponse.json(
@@ -13,20 +15,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Normalise: flat payloads may use "description" instead of "problemSolved"
+    const problemSolved = product.problemSolved || product.description;
+
     const zai = await ZAI.create();
 
     const prompt = `Eres un experto en marketing y estrategia de producto. Analiza el siguiente producto y genera un análisis estratégico completo en formato JSON.
 
 PRODUCTO:
 - Nombre: ${product.name}
-- Industria: ${product.industry}
-- Problema que resuelve: ${product.problemSolved}
-- Características: ${product.features?.join(', ')}
-- Audiencia objetivo: ${product.targetAudience}
-- Modelo de precios: ${product.pricingModel}
-- Competidores: ${product.competitors}
-- Diferenciadores: ${product.differentiators}
-- Website: ${product.websiteUrl || 'No especificado'}
+${product.industry ? `- Industria: ${product.industry}` : ''}
+- Problema que resuelve / descripción: ${problemSolved || 'No especificado'}
+${product.features?.length ? `- Características: ${product.features.join(', ')}` : ''}
+${product.targetAudience ? `- Audiencia objetivo: ${product.targetAudience}` : ''}
+${product.pricingModel ? `- Modelo de precios: ${product.pricingModel}` : ''}
+${product.competitors ? `- Competidores: ${product.competitors}` : ''}
+${product.differentiators ? `- Diferenciadores: ${product.differentiators}` : ''}
+${product.websiteUrl ? `- Website: ${product.websiteUrl}` : ''}
 
 Genera el análisis en el siguiente formato JSON exacto:
 {
