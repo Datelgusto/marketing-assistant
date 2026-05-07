@@ -214,6 +214,7 @@ export default function MarketingAssistant() {
 
   // Product CRUD
   const saveProduct = () => {
+    console.log('Enviando datos...');
     if (!productForm.name) {
       alert('El nombre del producto es obligatorio');
       return;
@@ -757,7 +758,8 @@ export default function MarketingAssistant() {
       </div>
 
       <Card>
-        <CardContent className="pt-6 space-y-6">
+        <CardContent className="pt-6">
+          <form onSubmit={(e) => { e.preventDefault(); saveProduct(); }} className="space-y-6">
           {/* Basic Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
@@ -879,11 +881,11 @@ export default function MarketingAssistant() {
           </div>
 
           <div className="flex justify-end gap-4">
-            <Button variant="outline" onClick={() => setCurrentView('dashboard')}>
+            <Button type="button" variant="outline" onClick={() => setCurrentView('dashboard')}>
               Cancelar
             </Button>
-            <Button 
-              onClick={saveProduct}
+            <Button
+              type="submit"
               disabled={!productForm.name || !productForm.problemSolved}
               className={`${saveSuccess ? 'bg-green-600' : 'bg-gradient-to-r from-purple-600 to-pink-600'}`}
             >
@@ -900,6 +902,7 @@ export default function MarketingAssistant() {
               )}
             </Button>
           </div>
+          </form>
         </CardContent>
       </Card>
     </div>
