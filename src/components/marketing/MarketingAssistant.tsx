@@ -250,9 +250,9 @@ export default function MarketingAssistant() {
     // Mostrar feedback
     setSaveSuccess(true);
     setTimeout(() => setSaveSuccess(false), 2000);
-    
-    // Cambiar a vista de análisis
-    setTimeout(() => setCurrentView('analysis'), 500);
+
+    // Llamar a la API de análisis con el producto recién guardado
+    analyzeProduct(product);
   };
 
   const addFeature = () => {
@@ -273,17 +273,18 @@ export default function MarketingAssistant() {
   };
 
   // API calls
-  const analyzeProduct = async () => {
-    if (!currentProduct && !productForm.name) return;
-    
+  const analyzeProduct = async (productOverride?: Product) => {
+    const productToAnalyze = productOverride ?? currentProduct;
+    if (!productToAnalyze && !productForm.name) return;
+
     setLoading('analysis');
     try {
       const response = await fetch('/api/analyze-product', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product: currentProduct || productForm })
+        body: JSON.stringify({ product: productToAnalyze || productForm })
       });
-      
+
       const data = await response.json();
       if (data.success) {
         setAnalysis(data.analysis);
