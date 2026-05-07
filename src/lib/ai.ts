@@ -1,11 +1,16 @@
 import fs from 'fs/promises';
 
 const getApiKey = async (): Promise<string> => {
+  // In production (Vercel), use the ANTHROPIC_API_KEY env var
+  if (process.env.ANTHROPIC_API_KEY) {
+    return process.env.ANTHROPIC_API_KEY;
+  }
+  // In Claude Code sandbox, read from the session auth file
   try {
     const token = await fs.readFile('/home/claude/.claude/remote/.session_ingress_token', 'utf-8');
     return token.trim();
   } catch {
-    return process.env.ANTHROPIC_API_KEY || '';
+    throw new Error('No API key available. Set ANTHROPIC_API_KEY environment variable.');
   }
 };
 
