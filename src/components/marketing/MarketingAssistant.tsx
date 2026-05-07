@@ -244,16 +244,14 @@ export default function MarketingAssistant() {
     // Actualizar estado
     setProducts(updatedProducts);
     setCurrentProduct(product);
-    
+
     // Guardar directamente en localStorage (aseguramos que se guarde)
     localStorage.setItem('marketing-products', JSON.stringify(updatedProducts));
-    
-    // Mostrar feedback
+
+    // Mostrar feedback y lanzar análisis con el producto recién guardado
     setSaveSuccess(true);
     setTimeout(() => setSaveSuccess(false), 2000);
-    
-    // Cambiar a vista de análisis
-    setTimeout(() => setCurrentView('analysis'), 500);
+    analyzeProduct(product);
   };
 
   const addFeature = () => {
@@ -274,15 +272,16 @@ export default function MarketingAssistant() {
   };
 
   // API calls
-  const analyzeProduct = async () => {
-    if (!currentProduct && !productForm.name) return;
-    
+  const analyzeProduct = async (productOverride?: Product) => {
+    const productToAnalyze = productOverride ?? currentProduct;
+    if (!productToAnalyze && !productForm.name) return;
+
     setLoading('analysis');
     try {
       const response = await fetch('/api/analyze-product', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product: currentProduct || productForm })
+        body: JSON.stringify({ product: productToAnalyze ?? productForm })
       });
       
       const data = await response.json();
