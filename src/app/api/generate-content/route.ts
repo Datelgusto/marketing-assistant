@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import ZAI from 'z-ai-web-dev-sdk';
+import { chatCompletion } from '@/lib/ai';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,9 +13,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const zai = await ZAI.create();
-
-    // Construir el prompt según el tipo de contenido
     let specificPrompt = '';
 
     switch (contentType) {
@@ -41,7 +38,7 @@ export async function POST(request: NextRequest) {
         specificPrompt = getSocialPostPrompt(product, analysis, platform, persona, angle);
     }
 
-    const completion = await zai.chat.completions.create({
+    const responseText = await chatCompletion({
       messages: [
         {
           role: 'system',
@@ -55,8 +52,6 @@ export async function POST(request: NextRequest) {
       temperature: 0.9
     });
 
-    const responseText = completion.choices[0]?.message?.content || '';
-    
     let cleanJson = responseText.trim();
     if (cleanJson.startsWith('```json')) {
       cleanJson = cleanJson.replace(/```json\n?/g, '').replace(/```\n?/g, '');
@@ -192,7 +187,7 @@ Formato JSON:
 
 function getVideoScriptPrompt(product: any, analysis: any, platform: string, persona: any, angle: any): string {
   const isShort = platform === 'tiktok' || platform === 'instagram';
-  
+
   return `Genera un guión de video ${isShort ? 'corto (30-60 segundos)' : 'largo (3-5 minutos)'} para ${platform}.
 
 PRODUCTO:

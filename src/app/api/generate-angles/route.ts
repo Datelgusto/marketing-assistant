@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import ZAI from 'z-ai-web-dev-sdk';
+import { chatCompletion } from '@/lib/ai';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,8 +12,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    const zai = await ZAI.create();
 
     const prompt = `Eres un experto en ventas y copywriting. Genera 6 ángulos de venta diferentes para el siguiente producto.
 
@@ -96,7 +94,7 @@ Genera los 6 ángulos de venta en este formato JSON exacto:
 
 Responde SOLO con el JSON.`;
 
-    const completion = await zai.chat.completions.create({
+    const responseText = await chatCompletion({
       messages: [
         {
           role: 'system',
@@ -110,8 +108,6 @@ Responde SOLO con el JSON.`;
       temperature: 0.8
     });
 
-    const responseText = completion.choices[0]?.message?.content || '';
-    
     let cleanJson = responseText.trim();
     if (cleanJson.startsWith('```json')) {
       cleanJson = cleanJson.replace(/```json\n?/g, '').replace(/```\n?/g, '');

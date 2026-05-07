@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import ZAI from 'z-ai-web-dev-sdk';
+import { chatCompletion } from '@/lib/ai';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,8 +12,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    const zai = await ZAI.create();
 
     const prompt = `Eres un experto en marketing B2B y análisis de audiencias. Basándote en el siguiente producto, genera 2 buyer personas detallados en formato JSON.
 
@@ -76,7 +74,7 @@ Genera 2 buyer personas en el siguiente formato JSON exacto:
 Uno debe ser el decisor principal (ej: CEO, Director) y otro el influenciador/usuario (ej: Manager, usuario final).
 Responde SOLO con el JSON, sin markdown ni explicaciones.`;
 
-    const completion = await zai.chat.completions.create({
+    const responseText = await chatCompletion({
       messages: [
         {
           role: 'system',
@@ -90,8 +88,6 @@ Responde SOLO con el JSON, sin markdown ni explicaciones.`;
       temperature: 0.8
     });
 
-    const responseText = completion.choices[0]?.message?.content || '';
-    
     let cleanJson = responseText.trim();
     if (cleanJson.startsWith('```json')) {
       cleanJson = cleanJson.replace(/```json\n?/g, '').replace(/```\n?/g, '');
