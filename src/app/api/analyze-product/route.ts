@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import ZAI from 'z-ai-web-dev-sdk';
+import { chatCompletion } from '@/lib/ai';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Accept both { product: {...} } and flat { name, description, ... }
     const product = body.product ?? body;
 
     if (!product || !product.name) {
@@ -15,10 +14,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Normalise: flat payloads may use "description" instead of "problemSolved"
     const problemSolved = product.problemSolved || product.description;
-
-    const zai = await ZAI.create();
 
     const prompt = `Eres un experto en marketing y estrategia de producto. Analiza el siguiente producto y genera un análisis estratégico completo en formato JSON.
 
@@ -62,7 +58,7 @@ Genera el análisis en el siguiente formato JSON exacto:
 
 Responde SOLO con el JSON, sin markdown ni explicaciones.`;
 
-    const completion = await zai.chat.completions.create({
+    const responseText = await chatCompletion({
       messages: [
         {
           role: 'system',
@@ -75,8 +71,6 @@ Responde SOLO con el JSON, sin markdown ni explicaciones.`;
       ],
       temperature: 0.7
     });
-
-    const responseText = completion.choices[0]?.message?.content || '';
 
     let cleanJson = responseText.trim();
     if (cleanJson.startsWith('```json')) {
