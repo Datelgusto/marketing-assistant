@@ -42,3 +42,17 @@ Análisis hecho solo leyendo el código, sin ejecutar nada. Nuestro sistema: Nex
   - Presupuesto por niveles con degradación a un modelo más barato: `inference/budget.ts`, `survival/low-compute.ts`.
   - Motor de políticas antes de ejecutar herramientas: `agent/policy-engine.ts`.
   - Defensa contra prompt-injection: `agent/injection-defense.ts`.
+
+## 5. latent-spaces/brag (añadido después)
+
+- **Qué es:** un plugin o skill de Claude Code (licencia MIT, v0.4.0) que convierte un proyecto de código **o la URL de una web** en un vídeo de lanzamiento de unos 20 s, con música, movimiento y textos para compartir.
+- **Cómo funciona:**
+  - `/brag` usa **HyperFrames** (de HeyGen, open source): Claude escribe la animación en HTML y la renderiza a MP4 con Chrome y ffmpeg.
+  - `/brag-slim` es la variante pensada para Opus 5.5: Claude hace el vídeo con las herramientas que haya en la máquina.
+- **Formatos:** horizontal, vertical y cuadrado. La voz es opcional (Kokoro, local).
+- **Seguridad:** no tiene hooks, MCP ni telemetría en el plugin. Trae música de ende.app y efectos de sonido.
+- **Coste:** sin API keys, pero **gasta del plan de Claude** (sesión agéntica larga, como lemo-opuscar). letsbrag.app es la versión web de pago.
+- **Encaje:** complementa a MoneyPrinterTurbo, no lo sustituye.
+  - MoneyPrinterTurbo saca muchos reels baratos con voz, subtítulos y fotos o stock.
+  - brag saca pocas piezas "hero" animadas con estética de marca: lanzamiento de una web, e-commerce o producto.
+- **Uso recomendado:** desde Claude Code, en local, pasándole la URL de la web del cliente. No se integra en la app.
