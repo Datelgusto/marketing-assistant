@@ -14,6 +14,8 @@ import { scriptToNarration, type VideoScript } from '@/lib/video-service';
 // Voces gratuitas de Microsoft Edge TTS que soporta MoneyPrinterTurbo.
 const VOICES = [
   { value: 'es-ES-ElviraNeural-Female', label: 'Elvira (España, mujer)' },
+  { value: 'es-AR-ElenaNeural-Female', label: 'Elena (Argentina, mujer)' },
+  { value: 'es-AR-TomasNeural-Male', label: 'Tomás (Argentina, hombre)' },
   { value: 'es-ES-AlvaroNeural-Male', label: 'Álvaro (España, hombre)' },
   { value: 'es-MX-DaliaNeural-Female', label: 'Dalia (México, mujer)' },
   { value: 'es-MX-JorgeNeural-Male', label: 'Jorge (México, hombre)' },
