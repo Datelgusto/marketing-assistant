@@ -37,6 +37,13 @@ Si `MONEYPRINTER_URL` no está configurada, el botón no aparece y la app funcio
 
    Si solo vas a usar tus propias fotos/vídeos, puedes saltarte este paso.
 
+   En el mismo `config.toml` cambia también estas dos líneas. Los subtítulos por defecto fallan con el «¿» y los «:» del español; Whisper (gratis, local) los genera bien:
+
+   ```toml
+   subtitle_provider = "whisper"
+   model_size = "small"
+   ```
+
 4. Construye la imagen con los servidores oficiales. Por defecto el Dockerfile descarga de mirrors de China, que desde España van lentos o fallan:
 
    ```bash

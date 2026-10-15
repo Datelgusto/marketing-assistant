@@ -105,6 +105,13 @@ export async function createVideo(input: CreateVideoInput): Promise<string> {
       video_language: 'es-ES',
       voice_name: input.voice,
       subtitle_enabled: input.subtitles,
+      // Subtítulos grandes y con borde: se leen sobre fotos claras de producto.
+      subtitle_position: 'custom',
+      custom_position: 75,
+      font_size: 72,
+      stroke_width: 4,
+      stroke_color: '#000000',
+      text_fore_color: '#FFFFFF',
       bgm_type: 'random',
       video_count: 1,
       video_source: useOwnMaterials ? 'local' : 'pexels',
