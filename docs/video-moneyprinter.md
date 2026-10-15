@@ -37,21 +37,27 @@ Si `MONEYPRINTER_URL` no está configurada, el botón no aparece y la app funcio
 
    Si solo vas a usar tus propias fotos/vídeos, puedes saltarte este paso.
 
-4. Arranca la API:
+4. Construye la imagen con los servidores oficiales. Por defecto el Dockerfile descarga de mirrors de China, que desde España van lentos o fallan:
 
    ```bash
-   docker compose up -d api
+   docker compose build --build-arg DOCKER_BUILD_MIRROR=default --build-arg PIP_USE_OFFICIAL=1
    ```
 
-   La API queda en `http://127.0.0.1:8080`. La primera vez tarda unos minutos en construir la imagen.
+5. Arranca la API (y el panel web en `http://localhost:8501`):
 
-5. En la carpeta de esta app, crea `.env.local`:
+   ```bash
+   docker compose up -d
+   ```
+
+   La API queda en `http://127.0.0.1:8080`.
+
+6. En la carpeta de esta app, crea `.env.local`:
 
    ```env
    MONEYPRINTER_URL=http://127.0.0.1:8080
    ```
 
-6. Arranca la app con `bun run dev` y abre http://localhost:3000.
+7. Arranca la app con `bun run dev` y abre http://localhost:3000.
 
 ## Uso
 
