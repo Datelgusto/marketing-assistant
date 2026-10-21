@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { VideoGenerator } from '@/components/marketing/VideoGenerator';
 import { 
   Sparkles, 
   Target, 
@@ -1420,6 +1421,9 @@ export default function MarketingAssistant() {
                 <div className="bg-muted p-4 rounded-lg whitespace-pre-wrap font-mono text-sm">
                   {item.content}
                 </div>
+                {item.type === 'video-script' && (
+                  <VideoGenerator scriptJson={item.content} subject={currentProduct?.name || item.title} />
+                )}
                 {item.hashtags && item.hashtags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-3">
                     {item.hashtags.map((tag, i) => (

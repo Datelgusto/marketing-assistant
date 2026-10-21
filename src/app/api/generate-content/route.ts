@@ -213,7 +213,8 @@ Formato JSON:
   ],
   "cta": "Call to action final",
   "thumbnail": "Descripción de la miniatura sugerida",
-  "tags": ["tag1", "tag2", "tag3"]
+  "tags": ["tag1", "tag2", "tag3"],
+  "stockKeywords": ["3-6 términos de búsqueda EN INGLÉS para vídeos de stock (Pexels) que encajen con las escenas, p. ej. 'herbal tea', 'calm woman'"]
 }`;
 }
 
