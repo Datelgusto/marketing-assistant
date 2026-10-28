@@ -1,0 +1,217 @@
+<title>Auditoría Senderos de San José</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: informe técnico de una columna; cada hallazgo es un bloque con su evidencia y su consecuencia */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.8rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.45rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:68ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.stat b{font-family:var(--display);font-size:2rem;line-height:1;font-variant-numeric:tabular-nums}
+.stat.bad b{color:var(--bad)}
+.finding{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.sev{align-self:flex-start;font-family:var(--mono);font-size:.72rem;padding:2px 9px;border-radius:99px}
+.sev.bad{background:var(--bad-soft);color:var(--bad)}
+.sev.warn{background:var(--warn-soft);color:var(--warn)}
+.sev.ok{background:var(--accent-soft);color:var(--accent)}
+.so{border-left:3px solid var(--accent);padding-left:12px}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.on{color:var(--accent);font-weight:600}
+.off{color:var(--muted)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.flow div{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:4px;min-width:0;font-size:.9rem}
+.flow div.broken{border-color:var(--bad);background:var(--bad-soft)}
+.flow strong{font-family:var(--display);font-size:.95rem}
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.plan>div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.plan .w{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.sources{font-size:.85rem;color:var(--muted)}
+.sources li{overflow-wrap:anywhere}
+@media (max-width:720px){.summary,.plan{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.flow{grid-template-columns:1fr}}
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Auditoría externa de captación digital · preparada por Braina IA</span>
+    <h1>Senderos de San José: qué se ve de la inversión en publicidad</h1>
+    <p>Revisión hecha el 28 de octubre de 2026 solo con información pública: Biblioteca de Anuncios de Meta, la web senderosdesanjose.com, sus etiquetas de medición, redes y portales. No hemos tenido acceso a las cuentas publicitarias. Por eso este informe muestra lo que se ve desde fuera y lista lo que hay que pedir para ver el resto.</p>
+    <div class="meta"><span>Proyecto: 48 lotes campestres · Lejos del Nido, El Retiro</span><span>Promotor: Constructora San Esteban S.A.S.</span><span>Inversión declarada: COP 6.000.000 / mes</span></div>
+  </header>
+
+  <section>
+    <span class="eyebrow">Resumen</span>
+    <div class="summary">
+      <div class="stat bad"><b>0</b><span>anuncios nuevos en Meta en los últimos 11 meses. El último se creó el 26-nov-2025.</span></div>
+      <div class="stat bad"><b>0</b><span>conversiones que la web puede reportar a Meta o a Google: solo envía visitas.</span></div>
+      <div class="stat"><b>30–100</b><span>leads al mes que deberían llegar aunque solo COP 2 M de los 6 M fueran a pauta.</span></div>
+    </div>
+    <p>Por lo que se ve en público, la publicidad está en piloto automático: los anuncios son de 2025 y la web no puede decirle a Meta ni a Google quién se convierte en interesado. Con esa configuración nadie puede demostrar cuántos compradores trae cada peso invertido. Tampoco lo puede hacer quien gestiona la pauta.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Hallazgo 1 · Meta (Facebook e Instagram)</span>
+    <div class="finding">
+      <span class="sev bad">Creatividades sin renovar desde hace 11 meses</span>
+      <h2>9 anuncios en total, 6 encendidos, ninguno creado en 2026</h2>
+      <p>La página «Senderos de San Jose» (ID <code>1126766254014315</code>) tiene 9 anuncios registrados en la Biblioteca de Anuncios de Meta. Se crearon en cuatro tandas, entre agosto y noviembre de 2025. Hoy 6 figuran encendidos y 5 de ellos llevan más de 11 meses.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Anuncio</th><th>Creado</th><th>Empezó a mostrarse</th><th>Estado</th><th>Días encendido</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=755694920154493">755694920154493</a></td><td class="n">04-ago-2025</td><td class="n">04-ago-2025</td><td class="on">Activo</td><td class="n">449</td></tr>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=1065970028980418">1065970028980418</a></td><td class="n">04-ago-2025</td><td class="n">04-ago-2025</td><td class="on">Activo</td><td class="n">449</td></tr>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=651875287802357">651875287802357</a></td><td class="n">17-oct-2025</td><td class="n">17-oct-2025</td><td class="off">Inactivo</td><td class="n">—</td></tr>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=845940538096266">845940538096266</a></td><td class="n">17-oct-2025</td><td class="n">17-oct-2025</td><td class="off">Inactivo</td><td class="n">—</td></tr>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=846496644762853">846496644762853</a></td><td class="n">14-nov-2025</td><td class="n">14-nov-2025</td><td class="on">Activo</td><td class="n">347</td></tr>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=1527045868438053">1527045868438053</a></td><td class="n">14-nov-2025</td><td class="n">15-nov-2025</td><td class="on">Activo</td><td class="n">346</td></tr>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=2686862044988129">2686862044988129</a></td><td class="n">14-nov-2025</td><td class="n">15-nov-2025</td><td class="on">Activo</td><td class="n">346</td></tr>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=1045950361567167">1045950361567167</a></td><td class="n">14-nov-2025</td><td class="n">22-ago-2026</td><td class="on">Activo</td><td class="n">66</td></tr>
+            <tr><td><a href="https://www.facebook.com/ads/library/?id=1231090082173253">1231090082173253</a></td><td class="n">26-nov-2025</td><td class="n">26-nov-2025</td><td class="off">Inactivo</td><td class="n">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="so"><strong>Qué significa:</strong> el mismo público ve las mismas piezas desde hace casi un año. Los anuncios se desgastan: cuesta más cada resultado y llegan menos interesados nuevos. Lo normal en inmobiliario es renovar las piezas cada 3-6 semanas.</p>
+      <p class="muted">Todos los anuncios de la página: <a href="https://www.facebook.com/ads/library/?active_status=all&amp;ad_type=all&amp;country=ALL&amp;view_all_page_id=1126766254014315">Biblioteca de Anuncios · Senderos de San Jose</a>. En Colombia Meta no publica el gasto de los anuncios comerciales, así que «activo» indica que el anuncio está encendido, no cuánto presupuesto tiene.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Hallazgo 2 · Medición</span>
+    <div class="finding">
+      <span class="sev bad">La web no registra interesados</span>
+      <h2>Meta y Google no saben quién deja sus datos</h2>
+      <div class="flow">
+        <div><strong>Anuncio</strong><span class="muted">Meta y Google Ads</span></div>
+        <div><strong>Visita a la web</strong><span class="muted">El píxel de Meta registra la visita</span></div>
+        <div class="broken"><strong>Deja sus datos</strong><span>Nadie lo registra</span></div>
+        <div class="broken"><strong>Optimización</strong><span>Las plataformas no aprenden quién compra</span></div>
+      </div>
+      <ul>
+        <li><strong>Píxel de Meta</strong> <code>538102567734902</code>: solo envía <code>PageView</code> (visita). No envía <code>Lead</code> cuando alguien deja sus datos.</li>
+        <li><strong>Google Tag Manager</strong> <code>GTM-WR62Z5Z</code>: en la web solo está la parte de respaldo (<code>&lt;noscript&gt;</code>). Falta el código que lo pone en marcha, así que en un navegador normal no se ejecuta.</li>
+        <li><strong>Dentro de ese contenedor</strong> hay una conversión de Google Ads (cuenta <code>350511749</code>) y un evento <code>Lead</code> de Meta. Solo se activan con dos eventos de una app de botón de WhatsApp (<code>moship-whatsapp-button-click</code> y <code>moship-whatsapp-form-submit</code>) que no está instalada en la web. Aunque el contenedor cargara, nunca se dispararían.</li>
+        <li><strong>No hay Google Analytics 4,</strong> ni teléfono ni enlace de WhatsApp visibles. El contacto es un formulario y un chat de GoHighLevel, servidos desde la cuenta de la agencia <em>JT Ads</em> (<code>api.jtads.com</code>).</li>
+      </ul>
+      <p class="so"><strong>Qué significa:</strong> si las campañas están configuradas para conseguir interesados, Meta y Google optimizan a ciegas, porque no reciben la señal de quién se convierte. Y nadie puede reportar con datos de la plataforma cuántos interesados trajo cada peso.</p>
+      <p class="muted">Lo comprobamos leyendo el código público de la web y del contenedor de Google Tag Manager el 28-oct-2026. Conviene confirmarlo en vivo con Google Tag Assistant y Meta Pixel Helper.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Hallazgo 3 · Presencia orgánica</span>
+    <div class="finding">
+      <span class="sev warn">Poca actividad visible</span>
+      <h2>La web y los videos están igual desde noviembre de 2025</h2>
+      <ul>
+        <li><strong>Web:</strong> una sola página (español e inglés), sin páginas específicas por campaña. Última publicación: 18-nov-2025. El precio «desde» no coincide entre versiones de la web (566 y 598 millones) ni con Fincaraíz (640 y 720 millones).</li>
+        <li><strong>YouTube</strong> (canal Constructora San Esteban, 130 suscriptores): los últimos videos del proyecto («LOTE 16/20/22/47 SENDEROS DE SAN JOSÉ») son de hace unos 11 meses y tienen entre 27 y 54 vistas.</li>
+        <li><strong>Fincaraíz:</strong> los avisos del proyecto los publica una inmobiliaria externa (Tu360Inmobiliario, septiembre de 2025) y no son destacados.</li>
+        <li><strong>Instagram</strong> (@senderodesanjose): no pudimos leer seguidores ni la fecha de la última publicación desde fuera.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Referencia</span>
+    <h2>Qué debería verse con COP 6 M al mes</h2>
+    <p>No sabemos cuánto de los 6 M va a Meta y cuánto es honorario. Por eso calculamos tres repartos con costos de referencia de Colombia en 2026: CPM de 12.000 a 24.000, coste por interesado de 20.000 a 70.000 (40.000 de media), del interesado a la visita del 5 al 15 % y del interesado a la venta del 0,5 al 2 %.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th></th><th>A · 6 M a pauta</th><th>B · 4 M pauta + 2 M honorario</th><th>C · 2 M pauta + 4 M honorario</th></tr></thead>
+        <tbody>
+          <tr><td>Impresiones al mes</td><td class="n">250.000–500.000</td><td class="n">167.000–333.000</td><td class="n">83.000–167.000</td></tr>
+          <tr><td>Personas alcanzadas</td><td class="n">83.000–250.000</td><td class="n">56.000–167.000</td><td class="n">28.000–83.000</td></tr>
+          <tr><td>Interesados (media)</td><td class="n">86–300 (150)</td><td class="n">57–200 (100)</td><td class="n">29–100 (50)</td></tr>
+          <tr><td>Visitas al proyecto</td><td class="n">4–45 (~15)</td><td class="n">3–30 (~10)</td><td class="n">1–15 (~5)</td></tr>
+          <tr><td>Ventas al mes</td><td class="n">0,4–6 (~1,5)</td><td class="n">0,3–4 (~1)</td><td class="n">0,1–2 (~0,5)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li><strong>Honorario habitual de gestión de pauta en Colombia:</strong> entre COP 1,5 y 4,5 M al mes. Por encima de unos 2,5 M lo normal es que incluya creatividades nuevas cada mes.</li>
+      <li><strong>Ojo con el IVA:</strong> Meta cobra 19 % de IVA en Colombia. Si sale de la misma bolsa, la pauta real es un 16 % menor.</li>
+      <li><strong>Con un lote de 566-720 millones,</strong> una sola venta adicional al año paga varias veces la inversión. Por eso compensa medir bien.</li>
+    </ul>
+    <p class="muted">Son rangos orientativos sacados de publicaciones de agencias colombianas de 2026, no datos oficiales de Meta. No hay referencias públicas específicas para lotes campestres.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Para ser justos</span>
+    <h2>Lo que este informe no puede afirmar</h2>
+    <ul>
+      <li><strong>Cuánto se gasta.</strong> Meta no lo publica en Colombia para anuncios comerciales. Seis anuncios encendidos pueden estar gastando mucho o casi nada.</li>
+      <li><strong>Que no haya anuncios.</strong> Una persona puede no ver anuncios que sí existen: por zona, edad, intereses, por ya seguir la página, por cómo Meta reparte la entrega, o porque solo salen en Stories o Reels.</li>
+      <li><strong>Otros canales.</strong> Puede haber campañas en Google o desde la página de otra persona o inmobiliaria. En Google no lo pudimos comprobar desde fuera.</li>
+      <li><strong>La gestión de quien lleva la pauta.</strong> Lo que se ve son hechos (anuncios de 2025, medición incompleta). Para valorar el trabajo hacen falta los datos de la cuenta.</li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">Lo que conviene pedir</span>
+    <h2>Transparencia estándar en cualquier gestión de pauta</h2>
+    <ol>
+      <li><strong>Acceso de solo lectura</strong> a la cuenta publicitaria de Meta y a Google Ads (cuenta <code>350511749</code>), o un export desde agosto de 2025 con gasto, impresiones, alcance, interesados y coste por interesado de cada mes.</li>
+      <li><strong>Los recibos de Meta y de Google</strong> de los últimos 6 meses, a nombre de la constructora. Separan lo que se pagó a las plataformas de lo que es honorario.</li>
+      <li><strong>Cuántos interesados llegaron cada mes</strong> por el formulario y el chat de la web, y a quién pertenece esa cuenta de GoHighLevel (los datos de los compradores deben ser de la constructora).</li>
+      <li><strong>Quién es dueño</strong> del píxel <code>538102567734902</code>, del Business Manager y de la página. Lo sano es que todo esté a nombre de la constructora y que la agencia entre como socia.</li>
+      <li><strong>Un informe mensual</strong> con creatividades activas, resultados, aprendizajes y cambios para el mes siguiente.</li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="eyebrow">Contrapartida</span>
+    <h2>Lo que proponemos para los primeros 30 días</h2>
+    <p>Un sistema completo de captación: anuncios que traen interesados, un asistente de WhatsApp que les contesta en segundos, los califica y agenda la visita al proyecto, y un informe con números reales a los 30 días.</p>
+    <div class="plan">
+      <div><span class="w">Semana 1</span><h3>Ver y arreglar la medición</h3><ul><li>Revisión de las cuentas con acceso de lectura</li><li>Píxel y conversiones funcionando: Meta y Google aprenden quién es interesado</li><li>WhatsApp visible en la web y en los anuncios</li></ul></div>
+      <div><span class="w">Semanas 2-3</span><h3>Anuncios nuevos y respuesta inmediata</h3><ul><li>Creatividades nuevas con los lotes, la reserva natural y el acceso desde El Retiro</li><li>Asistente de WhatsApp que contesta al instante, califica presupuesto y agenda visita</li><li>Cada interesado apuntado en un CRM de la constructora</li></ul></div>
+      <div><span class="w">Día 30</span><h3>Informe con números</h3><ul><li>Gasto real, interesados, coste por interesado, visitas agendadas</li><li>Qué anuncios funcionaron y cuáles no</li><li>Decisión con datos: seguir, ajustar o parar</li></ul></div>
+    </div>
+    <p class="muted">Los anuncios los gestiona Matías y el asistente y el CRM, Braina IA. La inversión en pauta la paga la constructora directamente a Meta y a Google, con sus recibos a su nombre. Precio y condiciones, en la propuesta aparte.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Fuentes</span>
+    <ul class="sources">
+      <li>Biblioteca de Anuncios de Meta, página 1126766254014315, consultada el 28-oct-2026.</li>
+      <li>senderosdesanjose.com: HTML de la página (última modificación según el servidor: 18-nov-2025) y contenedor público googletagmanager.com/gtm.js?id=GTM-WR62Z5Z, leídos el 28-oct-2026.</li>
+      <li>Fincaraíz, avisos 192872868 y 192872812 (Tu360Inmobiliario). YouTube, canal @tomyvargas1.</li>
+      <li>Costos de referencia: Alejandro Verjel (ago-2026), Cangrejo Digital (sep-2026), Sergio Vargas Sierra (2026), Trichter Consulting (ene-2026), Adligator (ago-2026).</li>
+    </ul>
+  </section>
+</main>
