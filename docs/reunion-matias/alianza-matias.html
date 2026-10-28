@@ -1,0 +1,321 @@
+<title>Alianza Braina × Matías</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: una columna de lectura tipo "plano de obra": bloques con cota a la izquierda, calculadora y checklist como herramientas */
+:root{
+  --bg:#f3f4f2; --surface:#ffffff; --fg:#1b1f24; --muted:#5b636c; --line:#d6dad6;
+  --accent:#1d4ed8; --accent-soft:#e3ebfd; --warn:#b45309; --warn-soft:#fdf0e1; --ok:#15803d; --ok-soft:#e3f4e8;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#13161a; --surface:#1b1f25; --fg:#e7e9ec; --muted:#9aa3ad; --line:#2d333b;
+  --accent:#7ea2ff; --accent-soft:#1d2a4a; --warn:#f0a556; --warn-soft:#3a2a17; --ok:#5fd08a; --ok-soft:#173225; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13161a; --surface:#1b1f25; --fg:#e7e9ec; --muted:#9aa3ad; --line:#2d333b;
+  --accent:#7ea2ff; --accent-soft:#1d2a4a; --warn:#f0a556; --warn-soft:#3a2a17; --ok:#5fd08a; --ok-soft:#173225; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.55rem;font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0;max-width:65ch}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:16px}
+header{display:flex;flex-direction:column;gap:14px;border-bottom:2px solid var(--fg);padding-bottom:24px}
+.lead{font-size:1.2rem;max-width:60ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.problem{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.problem div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.problem strong{font-family:var(--display);font-size:1.05rem}
+/* capas */
+.layers{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.layer{display:grid;grid-template-columns:140px 1fr 150px;gap:16px;padding:18px 20px;border-top:1px solid var(--line);align-items:start}
+.layer:first-child{border-top:0}
+.layer .tag{font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.layer .who{font-family:var(--display);font-weight:700}
+.layer .who small{display:block;font-family:var(--body);font-weight:400;color:var(--muted);font-size:.85rem}
+.layer.later{background:repeating-linear-gradient(135deg,transparent 0 10px,var(--bg) 10px 20px)}
+.pill{display:inline-block;font-family:var(--mono);font-size:.72rem;padding:2px 8px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+/* tabla */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
+th,td{text-align:left;padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* calculadora */
+.calc{background:var(--surface);border:2px solid var(--accent);border-radius:6px;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px}
+.fields{display:flex;flex-direction:column;gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--muted)}
+input[type=number],input[type=text],input[type=date],textarea{font:inherit;font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:8px 10px;width:100%}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.results{display:flex;flex-direction:column;gap:14px;min-width:0}
+.res-block{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:6px}
+.res-block:first-child{border-top:0;padding-top:0}
+.line{display:flex;justify-content:space-between;gap:12px;font-size:.95rem}
+.line span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.line.total{font-weight:600;font-size:1.05rem}
+.note{font-size:.85rem;color:var(--muted)}
+/* pasos */
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+ol.steps li:first-child{border-top:0}
+ol.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:1.4rem;color:var(--accent);line-height:1.2}
+.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.week{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.week .w{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.week strong{font-family:var(--display)}
+.phase{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.phase>div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px}
+/* checklist */
+.check{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.check .item{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+.check input[type=checkbox]{width:20px;height:20px;margin-top:3px;accent-color:var(--accent)}
+.check .item>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button{font:inherit;font-weight:600;border-radius:4px;padding:9px 16px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--surface)}
+button.ghost{background:transparent;color:var(--accent)}
+#copyMsg{font-size:.85rem;color:var(--ok)}
+#summary{font-family:var(--mono);font-size:.8rem;min-height:120px}
+@media (max-width:720px){
+  .problem,.calc,.phase{grid-template-columns:1fr}
+  .weeks{grid-template-columns:1fr 1fr}
+  .layer{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:420px){.weeks,.row2{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Braina IA · reunión del 28 de octubre de 2026</span>
+    <h1>Alianza Braina × Matías</h1>
+    <p class="lead">Tú traes los anuncios que generan interesados. Nosotros contestamos a esos interesados en segundos, los calificamos, les agendamos la visita y lo dejamos todo apuntado. Juntos vendemos el sistema completo, no un chatbot.</p>
+    <div class="meta"><span>Cliente tipo: constructoras que pautan en Meta</span><span>Noviembre: 4 clientes nuevos</span><span>Alianza por fases</span></div>
+  </header>
+
+  <section>
+    <span class="eyebrow">El problema que vendemos</span>
+    <h2>Las constructoras pagan anuncios y pierden a los compradores que les escriben</h2>
+    <div class="problem">
+      <div><strong>Pagan cada lead</strong><span class="muted">Pautan en Meta y los interesados llegan por WhatsApp.</span></div>
+      <div><strong>Contestan tarde o mal</strong><span class="muted">Horas de espera, sin calificar y sin seguimiento a las 24 h.</span></div>
+      <div><strong>Culpan a la pauta</strong><span class="muted">Si no venden, el que paga el pato es quien lleva los anuncios.</span></div>
+    </div>
+    <p>Lo medimos antes de vender: escribimos a su anuncio como compradores (el <em>incógnito</em>) y en la auditoría les ponemos el número delante: «se os escapan X compradores al mes, que son Y millones».</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">El pack de captación y gestión</span>
+    <h2>Tres capas, cada una con su dueño</h2>
+    <div class="layers">
+      <div class="layer">
+        <span class="tag">Capa 1 · Captación</span>
+        <div><p>Anuncios en Meta que traen interesados. Estrategia, creatividades y gestión de la campaña.</p></div>
+        <div class="who">Matías<small>La inversión en pauta la paga el cliente directamente a Meta</small></div>
+      </div>
+      <div class="layer">
+        <span class="tag">Capa 2 · Seguimiento</span>
+        <div><p>Agente de WhatsApp que contesta en segundos, califica y agenda la visita a la sala de ventas, más un CRM con cada contacto e informe con sus números a los 30 días.</p></div>
+        <div class="who">Braina<small>Garantía de 30 días sobre el agente</small></div>
+      </div>
+      <div class="layer later">
+        <span class="tag">Capa 3 · Cierre</span>
+        <div><p>Convertir visitas en ventas: seguimiento a quien visitó y no compró, guion e informe. Solo dentro del sistema completo.</p></div>
+        <div class="who">Juntos<small>Se propone en la revisión del mes 3, si hubo resultado</small></div>
+      </div>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Parte</th><th>Quién la hace y la factura</th><th>Precio al cliente</th></tr></thead>
+        <tbody>
+          <tr><td>Agente + CRM</td><td>Braina</td><td class="num">COP 4.000.000 implementación<br>+ COP 1.500.000 / mes</td></tr>
+          <tr><td>Gestión de la pauta</td><td>Matías</td><td class="num" id="tblMatias">Lo define Matías</td></tr>
+          <tr><td>Inversión en pauta</td><td>El cliente, directo a Meta</td><td>Aparte. Nunca pasa por nosotros</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">Contrato de 3 meses con revisión al mes 3. Una sola propuesta y una sola presentación, pero cada uno factura su parte: es lo más limpio mientras Matías no tenga empresa.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">El reparto</span>
+    <h2>Quien trae al cliente gana sobre lo que vende el otro</h2>
+    <p>Mismo porcentaje en las dos direcciones. Si Matías trae una constructora que contrata el agente, se lleva su comisión sobre la parte de Braina. Si Braina trae un cliente que necesita pauta, la pauta es de Matías y Braina se lleva el mismo porcentaje sobre ella.</p>
+
+    <div class="calc" aria-labelledby="calcTitle">
+      <div class="fields">
+        <h3 id="calcTitle">Calculadora del pack</h3>
+        <label for="mFee">Gestión de pauta de Matías (COP / mes)
+          <input type="number" id="mFee" min="0" step="50000" value="2500000">
+        </label>
+        <label for="mSetup">Puesta en marcha de Matías, si cobra (COP, pago único)
+          <input type="number" id="mSetup" min="0" step="50000" value="0">
+        </label>
+        <div class="row2">
+          <label for="bSetup">Implementación Braina
+            <input type="number" id="bSetup" min="0" step="100000" value="4000000">
+          </label>
+          <label for="bFee">Cuota Braina / mes
+            <input type="number" id="bFee" min="0" step="100000" value="1500000">
+          </label>
+        </div>
+        <div class="row2">
+          <label for="pSetup">% sobre pagos únicos
+            <input type="number" id="pSetup" min="0" max="100" step="1" value="20">
+          </label>
+          <label for="pFee">% sobre la cuota mensual
+            <input type="number" id="pFee" min="0" max="100" step="1" value="10">
+          </label>
+        </div>
+        <div class="row2">
+          <label for="months">Meses de comisión
+            <input type="number" id="months" min="1" max="36" step="1" value="12">
+          </label>
+          <label for="rate">COP por 1 USD
+            <input type="number" id="rate" min="1" step="10" value="3170">
+          </label>
+        </div>
+        <p class="note">Ejemplo con 2,5 M/mes para la gestión (≈ los USD 700 de la floristería, que incluían la pauta). Cámbialo por el precio real de Matías.</p>
+      </div>
+      <div class="results" aria-live="polite">
+        <div class="res-block">
+          <h3>Lo que paga el cliente</h3>
+          <div class="line"><span>Primer mes (puesta en marcha + cuotas)</span><span id="cFirst"></span></div>
+          <div class="line"><span>Cada mes después</span><span id="cMonthly"></span></div>
+          <div class="line total"><span>Contrato de 3 meses</span><span id="c3m"></span></div>
+          <p class="note">Sin contar la inversión en pauta, que va directa a Meta.</p>
+        </div>
+        <div class="res-block">
+          <h3>Si el cliente lo trae Matías</h3>
+          <div class="line"><span>Comisión al cerrar</span><span id="mA1"></span></div>
+          <div class="line"><span>Comisión al mes</span><span id="mA2"></span></div>
+          <div class="line total"><span>Matías gana en 3 meses</span><span id="mA3"></span></div>
+          <p class="note">Su gestión de pauta más la comisión sobre la parte de Braina.</p>
+        </div>
+        <div class="res-block">
+          <h3>Si el cliente lo trae Braina</h3>
+          <div class="line"><span>Comisión de Braina al mes</span><span id="bB2"></span></div>
+          <div class="line total"><span>Matías gana en 3 meses</span><span id="bB3"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">El primer cliente juntos</span>
+    <h2>Tu constructora de lotes</h2>
+    <ol class="steps">
+      <li><div><strong>El decisor y la fecha.</strong> Nombre de quien decide y fecha de la auditoría gratis, con Matías presente.</div></li>
+      <li><div><strong>Incógnito esta semana.</strong> Escribimos a su anuncio como compradores y medimos cuánto tardan, si califican y si hacen seguimiento.</div></li>
+      <li><div><strong>Su demo montada.</strong> Su agente hecho con su web, con un enlace para que lo prueben ellos mismos.</div></li>
+      <li><div><strong>Auditoría.</strong> Sus números sobre la mesa: cuántos compradores pierden al mes y cuánto dinero es eso.</div></li>
+      <li><div><strong>Propuesta en menos de 24 h</strong> con el pack y una fecha de decisión.</div></li>
+    </ol>
+    <p>Además: tus 3-4 clientes actuales ya reciben leads de tus anuncios. Si no los contestan a tiempo, el agente es la capa de seguimiento que les falta, presentada por ti y con la demo de su propio negocio.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Noviembre</span>
+    <h2>Un cliente por semana</h2>
+    <div class="weeks">
+      <div class="week"><span class="w">S1 · 3-6 nov</span><strong>Cliente 1</strong><span class="muted">Auditoría de la constructora de lotes. Matías presenta el pack a sus clientes.</span></div>
+      <div class="week"><span class="w">S2 · 9-13 nov</span><strong>Cliente 2</strong><span class="muted">3 auditorías. Primeros anuncios del pack en marcha.</span></div>
+      <div class="week"><span class="w">S3 · 17-20 nov</span><strong>Cliente 3</strong><span class="muted">3 auditorías. Primer informe de números para usar como caso.</span></div>
+      <div class="week"><span class="w">S4 · 23-30 nov</span><strong>Cliente 4</strong><span class="muted">Cerrar propuestas abiertas. Revisión del mes el 30.</span></div>
+    </div>
+    <p class="muted">Para 1 cierre a la semana: 40 contactos → 10 conversaciones con decisor → 3 auditorías → 1 cliente. Llamada fija de 20 minutos cada lunes para mirar los números.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Hacia dónde va</span>
+    <h2>Una alianza por fases</h2>
+    <div class="phase">
+      <div><span class="pill ok">Fase 1 · desde hoy</span><h3>Cada uno con su parte, por escrito</h3><ul><li>Pack conjunto y reparto cruzado</li><li>Primer cliente juntos</li><li>Cada uno factura lo suyo</li></ul></div>
+      <div><span class="pill">Fase 2 · tras 2-3 clientes juntos</span><h3>Hablamos de algo mayor</h3><ul><li>Sociedad o acuerdo más grande</li><li>Desde los 18, Matías firma y factura solo</li><li>Oferta propia para agencias</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Con qué salimos hoy</span>
+    <h2>Acuerdos de la reunión</h2>
+    <div class="check">
+      <div class="item"><input type="checkbox" id="k1"><div><label for="k1" style="color:var(--fg)">Precio de la gestión de pauta de Matías</label><input type="text" id="t1" placeholder="Ej.: COP 2,5 M/mes, incluye creatividades"></div></div>
+      <div class="item"><input type="checkbox" id="k2"><div><label for="k2" style="color:var(--fg)">Reparto y comisiones aceptados por los dos</label><input type="text" id="t2" placeholder="Ej.: 20 % pagos únicos y 10 % cuota 12 meses, en las dos direcciones"></div></div>
+      <div class="item"><input type="checkbox" id="k3"><div><label for="k3" style="color:var(--fg)">Decisor y fecha de la auditoría de la constructora de lotes</label><input type="text" id="t3" placeholder="Nombre, cargo y fecha"></div></div>
+      <div class="item"><input type="checkbox" id="k4"><div><label for="k4" style="color:var(--fg)">A cuántos clientes o contactos presenta Matías el pack en noviembre, y cuándo</label><input type="text" id="t4" placeholder="Ej.: 4 clientes antes del 7-nov"></div></div>
+      <div class="item"><input type="checkbox" id="k5"><div><label for="k5" style="color:var(--fg)">Llamada fija semanal de 20 minutos</label><input type="text" id="t5" placeholder="Ej.: lunes 9:00"></div></div>
+      <label for="notes">Otras notas
+        <textarea id="notes" rows="3" placeholder="Lo que haya salido además"></textarea>
+      </label>
+      <div class="actions">
+        <button type="button" id="copyBtn">Copiar resumen</button>
+        <button type="button" class="ghost" id="clearBtn">Vaciar</button>
+        <span id="copyMsg" role="status"></span>
+      </div>
+      <textarea id="summary" rows="8" readonly aria-label="Resumen de los acuerdos"></textarea>
+    </div>
+    <p class="muted">Lo que escribas aquí se guarda solo en este navegador.</p>
+  </section>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var ids=['mFee','mSetup','bSetup','bFee','pSetup','pFee','months','rate'];
+  function n(id){var v=parseFloat($(id).value);return isFinite(v)?v:0}
+  function cop(x){return 'COP '+Math.round(x).toLocaleString('es-CO')}
+  function both(x){var r=n('rate');return cop(x)+(r>0?'  ≈ USD '+Math.round(x/r).toLocaleString('es-CO'):'')}
+  function calc(){
+    var mF=n('mFee'),mS=n('mSetup'),bS=n('bSetup'),bF=n('bFee'),pS=n('pSetup')/100,pF=n('pFee')/100,mo=n('months');
+    var term=Math.min(3,mo);
+    $('cFirst').textContent=both(mS+bS+mF+bF);
+    $('cMonthly').textContent=both(mF+bF);
+    $('c3m').textContent=both(mS+bS+3*(mF+bF));
+    // Matías trae: comisión sobre la parte de Braina
+    $('mA1').textContent=cop(bS*pS);
+    $('mA2').textContent=cop(bF*pF);
+    $('mA3').textContent=both(mS+3*mF+bS*pS+term*bF*pF);
+    // Braina trae: comisión sobre la parte de Matías
+    $('bB2').textContent=cop(mF*pF);
+    $('bB3').textContent=both(mS*(1-pS)+3*mF-term*mF*pF);
+    $('tblMatias').textContent=mF>0?cop(mF)+' / mes (por confirmar)':'Lo define Matías';
+  }
+  ids.forEach(function(id){$(id).addEventListener('input',calc)});
+  calc();
+
+  var keys=['k1','k2','k3','k4','k5'],texts=['t1','t2','t3','t4','t5','notes'];
+  var labels=['Precio gestión de pauta','Reparto y comisiones','Auditoría constructora de lotes','Cuota de presentaciones de Matías','Llamada semanal'];
+  function save(){try{var d={};keys.forEach(function(k){d[k]=$(k).checked});texts.forEach(function(t){d[t]=$(t).value});localStorage.setItem('matias-acuerdos',JSON.stringify(d))}catch(e){} summary()}
+  function load(){try{var d=JSON.parse(localStorage.getItem('matias-acuerdos')||'{}');keys.forEach(function(k){if(k in d)$(k).checked=!!d[k]});texts.forEach(function(t){if(t in d)$(t).value=d[t]})}catch(e){}}
+  function summary(){
+    var out=['Reunión Braina × Matías · 28-oct-2026',''];
+    keys.forEach(function(k,i){out.push(($(k).checked?'[x] ':'[ ] ')+labels[i]+': '+($('t'+(i+1)).value||'—'))});
+    if($('notes').value)out.push('','Notas: '+$('notes').value);
+    out.push('','Pack: gestión Matías '+cop(n('mFee'))+'/mes · Braina '+cop(n('bSetup'))+' + '+cop(n('bFee'))+'/mes · comisión cruzada '+n('pSetup')+' % pagos únicos y '+n('pFee')+' % cuota durante '+n('months')+' meses');
+    $('summary').value=out.join('\n');
+  }
+  keys.concat(texts).forEach(function(id){$(id).addEventListener('input',save);$(id).addEventListener('change',save)});
+  ids.forEach(function(id){$(id).addEventListener('input',summary)});
+  $('copyBtn').addEventListener('click',function(){
+    var txt=$('summary').value;
+    var done=function(){$('copyMsg').textContent='Copiado'};
+    var fallback=function(){$('summary').focus();$('summary').select();$('copyMsg').textContent='Seleccionado: pulsa Ctrl+C'};
+    try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+  });
+  $('clearBtn').addEventListener('click',function(){keys.forEach(function(k){$(k).checked=false});texts.forEach(function(t){$(t).value=''});save();$('copyMsg').textContent='Vaciado'});
+  load();summary();
+})();
+</script>
