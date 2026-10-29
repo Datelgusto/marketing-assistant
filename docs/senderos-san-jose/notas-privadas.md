@@ -36,3 +36,9 @@
 - ¿Reciben recibos de Meta o Google a su nombre?
 - ¿Cuántos interesados les llegan al mes y por dónde? ¿Quién los contesta y cuánto tarda?
 - ¿Cuántos lotes han vendido en 2026 y cuántos vinieron de redes?
+
+## Decisión de Daniel (29-oct-2026)
+- **El agente de Braina entra gratis en la prueba de Senderos.** Es una excepción a «pago desde el inicio» (20-oct) por el tamaño del contrato que se puede cerrar.
+- **El número de WhatsApp lo pone la constructora.** Falta acordar con el dueño cuál y cómo.
+- **Contenido:** tienen fotos y videos de los lotes, y una chica que graba. Si hace falta, se graba en el lote.
+- **Prueba de pauta de Matías:** unos COP 50.000/día, en paralelo con el proveedor actual (COP 6 M/mes).
