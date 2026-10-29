@@ -1,0 +1,180 @@
+<title>Información para el agente Senderos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Senderos de San José · para preparar la prueba piloto</span>
+    <h1>Información para el agente de WhatsApp</h1>
+    <p>El agente contesta a los compradores con lo que ponga aquí, y solo con eso: si un dato no está, pasa la pregunta a su asesor. Puede rellenarlo a mano, en un documento o mandarnos audios por WhatsApp con las respuestas. Lo que ya sabemos por la web lo dejamos escrito para que lo confirme o lo corrija.</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">1 · Datos del proyecto</span>
+    <div class="tablewrap">
+      <table class="fill">
+        <thead><tr><th style="width:38%">Dato</th><th>Lo que vemos hoy (confirme o corrija)</th></tr></thead>
+        <tbody>
+          <tr><td>Nombre comercial y promotor</td><td>Senderos de San José · Constructora San Esteban S.A.S.</td></tr>
+          <tr><td>Ubicación exacta y enlace de Google Maps</td><td>Vereda Lejos del Nido, a 4,7 km de El Retiro</td></tr>
+          <tr><td>Cómo llegar y tiempo desde Medellín</td><td>Unos 45 min · acceso por El Retiro y por La Ceja</td></tr>
+          <tr><td>Número de lotes y etapas</td><td>48 lotes, primera etapa</td></tr>
+          <tr><td>Precio «desde» que podemos anunciar</td><td>En la web aparecen $566 M y $598 M: ¿cuál es el vigente?</td></tr>
+          <tr><td>Áreas (m²)</td><td>De 1.212 a 3.795 m²</td></tr>
+          <tr><td>Cuota de administración</td><td>COP 600.000 al mes (según Fincaraíz)</td></tr>
+          <tr><td>Estado de los lotes al entregar</td><td>Explanados</td></tr>
+          <tr><td>Servicios (agua, energía, gas, internet)</td><td></td></tr>
+          <tr><td>Zonas comunes y fecha de entrega de cada una</td><td>Club house, gimnasio, pádel, coworking, senderos, reserva natural de 14.000 m²…</td></tr>
+          <tr><td>Seguridad</td><td>Unidad cerrada con portería 24/7</td></tr>
+          <tr><td>Reglamento: qué se puede construir, alturas, tiempos</td><td></td></tr>
+          <tr><td>Escrituración y licencias: estado</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">2 · Lotes disponibles</span>
+    <div class="tablewrap">
+      <table class="fill">
+        <thead><tr><th>Lote</th><th>Área (m²)</th><th>Precio</th><th>Vista / característica</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">Si es más fácil, envíenos la lista de precios que ya usan sus asesores.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">3 · Formas de pago</span>
+    <div class="tablewrap">
+      <table class="fill">
+        <thead><tr><th style="width:38%">Opción</th><th>Condiciones</th></tr></thead>
+        <tbody>
+          <tr><td>Separación (valor y plazo)</td><td></td></tr>
+          <tr><td>Contado (¿hay descuento?)</td><td></td></tr>
+          <tr><td>Cuotas directas con la constructora</td><td></td></tr>
+          <tr><td>Crédito con banco o leasing</td><td></td></tr>
+          <tr><td>Permuta (¿reciben carro, apartamento?)</td><td></td></tr>
+          <tr><td>Gastos para el comprador (escrituras, registro)</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">4 · Visitas</span>
+    <div class="tablewrap">
+      <table class="fill">
+        <thead><tr><th style="width:38%">Dato</th><th>Respuesta</th></tr></thead>
+        <tbody>
+          <tr><td>Días y horas en que se puede visitar</td><td></td></tr>
+          <tr><td>Asesor que recibe la visita (nombre y WhatsApp)</td><td></td></tr>
+          <tr><td>Punto de encuentro</td><td></td></tr>
+          <tr><td>¿Se puede visitar sin cita?</td><td></td></tr>
+          <tr><td>¿Cuántas visitas al día puede atender el asesor?</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">5 · Las preguntas que más les hacen</span>
+    <div class="tablewrap">
+      <table class="fill">
+        <thead><tr><th style="width:42%">Pregunta del comprador</th><th>Respuesta que debe dar el agente</th></tr></thead>
+        <tbody>
+          <tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr>
+          <tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">6 · Lo que el agente no debe decir</span>
+    <div class="box">
+      <p>Temas que solo trata el asesor (por ejemplo, descuentos, negociaciones, temas legales) y frases o promesas que no quieren que se usen:</p>
+      <div style="height:90px"></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">7 · Datos técnicos (los rellena quien lleve las cuentas)</span>
+    <div class="tablewrap">
+      <table class="fill">
+        <thead><tr><th style="width:38%">Dato</th><th>Respuesta</th></tr></thead>
+        <tbody>
+          <tr><td>Número de WhatsApp para la campaña</td><td></td></tr>
+          <tr><td>ID del Business Manager (portafolio comercial)</td><td></td></tr>
+          <tr><td>ID de la cuenta publicitaria</td><td></td></tr>
+          <tr><td>Página de Facebook e Instagram de la campaña</td><td></td></tr>
+          <tr><td>Carpeta con fotos y videos (enlace)</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>

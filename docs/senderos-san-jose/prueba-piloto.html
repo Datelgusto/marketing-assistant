@@ -1,0 +1,183 @@
+<title>Prueba piloto Senderos de San José</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Propuesta de prueba · Braina IA y Matías</span>
+    <h1>Prueba piloto de 30 días para Senderos de San José</h1>
+    <p>Durante 30 días ponemos a funcionar el sistema completo de captación con una inversión pequeña, para que usted vea con sus propios números qué interesados llegan, cuánto cuesta cada uno y cuántos agendan visita al lote. Al final decide con datos.</p>
+    <div class="meta"><span>Duración: 30 días desde que arrancan los anuncios</span><span>Pauta: unos COP 50.000 al día</span><span>Agente y CRM: sin costo durante la prueba</span></div>
+  </header>
+
+  <section>
+    <span class="eyebrow">Cómo funciona</span>
+    <h2>Del anuncio a la visita al lote</h2>
+    <div class="flow">
+      <div class="step"><strong>Anuncio</strong><span class="muted">Lotes con precio, video y zonas comunes</span></div><span class="arrow">→</span>
+      <div class="step"><strong>WhatsApp</strong><span class="muted">El interesado escribe al número de la campaña</span></div><span class="arrow">→</span>
+      <div class="step"><strong>Agente</strong><span class="muted">Contesta en segundos, a cualquier hora, y califica</span></div><span class="arrow">→</span>
+      <div class="step"><strong>Visita agendada</strong><span class="muted">Día y hora en el lote, con recordatorio</span></div><span class="arrow">→</span>
+      <div class="step"><strong>Su asesor</strong><span class="muted">Recibe al comprador ya calificado</span></div>
+    </div>
+    <p>Cada conversación queda apuntada en el CRM: quién escribió, qué busca, su presupuesto y en qué punto está.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Quién pone qué</span>
+    <div class="grid2">
+      <div class="box">
+        <span class="pill">Nosotros</span>
+        <h3>Braina IA y Matías</h3>
+        <ul>
+          <li><strong>Anuncios en Meta</strong> (Facebook e Instagram): estrategia, creatividades, textos y gestión diaria. Los lleva Matías.</li>
+          <li><strong>Agente de WhatsApp y CRM</strong>, configurados con la información real del proyecto. Sin costo durante la prueba.</li>
+          <li><strong>Medición:</strong> el evento de interesado bien configurado, para que Meta aprenda quién es buen comprador.</li>
+          <li><strong>Informes</strong> el día 7, el 14 y el 30.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <span class="pill blue">La constructora</span>
+        <h3>Senderos de San José</h3>
+        <ul>
+          <li><strong>Un número de WhatsApp</strong> para la campaña, a nombre de la constructora.</li>
+          <li><strong>La pauta:</strong> unos COP 50.000 al día, pagados directamente a Meta con su tarjeta y desde su cuenta publicitaria. Los recibos salen a su nombre.</li>
+          <li><strong>Acceso de socio</strong> a la cuenta publicitaria para Matías.</li>
+          <li><strong>Fotos y videos</strong> de los lotes y la información del proyecto (le enviamos una plantilla).</li>
+          <li><strong>Un asesor</strong> que reciba las visitas agendadas.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Calendario</span>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Momento</th><th>Qué pasa</th><th>Qué recibe usted</th></tr></thead>
+        <tbody>
+          <tr><td class="n">Semana 0</td><td>Preparación: información del proyecto, número de WhatsApp, acceso a la cuenta, creatividades y agente en pruebas</td><td>Una demo del agente para probarlo usted mismo antes de lanzar</td></tr>
+          <tr><td class="n">Días 1-7</td><td>Los anuncios arrancan. Meta aprende; no se cambia nada en esta fase</td><td>Informe 1: gasto, conversaciones y tiempo de respuesta</td></tr>
+          <tr><td class="n">Días 8-14</td><td>Se ajustan las piezas y el público según los primeros datos</td><td>Informe 2: costo por interesado y visitas agendadas</td></tr>
+          <tr><td class="n">Días 15-30</td><td>Se escala lo que funciona</td><td>Informe final y reunión de decisión</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Qué medimos</span>
+    <h2>Indicadores de la prueba</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Indicador</th><th>Meta propuesta</th><th>Cómo se comprueba</th></tr></thead>
+        <tbody>
+          <tr><td>Tiempo de respuesta</td><td class="n">menos de 1 minuto, al 100 %</td><td>Registro de cada conversación en el CRM</td></tr>
+          <tr><td>Conversaciones con interesados que tienen presupuesto</td><td class="n">15 o más</td><td>Calificación del agente en el CRM</td></tr>
+          <tr><td>Visitas agendadas al lote</td><td class="n">3 o más</td><td>Agenda del CRM y confirmación de su asesor</td></tr>
+          <tr><td>Gasto en pauta y costo por interesado</td><td class="n">a la vista</td><td>Recibos de Meta a nombre de la constructora y Administrador de anuncios</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">Las metas se confirman juntos antes de arrancar. Con unos COP 1,5 M de pauta al mes, lo razonable en lotes de este valor es de 15 a 40 conversaciones calificadas.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">El día 30</span>
+    <div class="grid2">
+      <div class="box">
+        <span class="pill">Si se cumplen las metas</span>
+        <h3>Seguimos con el plan completo</h3>
+        <ul>
+          <li>Agente y CRM de Braina: COP 4.000.000 de implementación + COP 1.500.000 al mes.</li>
+          <li>Gestión de la pauta de Matías: honorario que se acuerda aparte.</li>
+          <li>La inversión en pauta sigue pagándose directamente a Meta.</li>
+          <li>Contrato de 3 meses con revisión al tercer mes.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <span class="pill muted">Si no se cumplen</span>
+        <h3>Termina sin costo</h3>
+        <ul>
+          <li>No paga nada por el agente ni por el CRM.</li>
+          <li>El número de WhatsApp, la cuenta publicitaria y los datos de los interesados son suyos.</li>
+          <li>Se queda con los informes y lo aprendido.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Transparencia</span>
+    <p class="callout">Todo queda a nombre de la constructora: número, cuenta publicitaria, página, píxel y datos de los compradores. Usted puede ver cada peso invertido en los recibos de Meta y cada conversación en el CRM. Es lo mismo que le recomendamos exigir a cualquier proveedor de publicidad.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Acuerdo</span>
+    <p>Fecha de inicio prevista: ____________________ &nbsp; Número de WhatsApp de la campaña: ____________________</p>
+    <div class="sig">
+      <div>Por Senderos de San José</div>
+      <div>Por Braina IA · Daniel Domínguez &nbsp;/&nbsp; Matías</div>
+    </div>
+  </section>
+</main>

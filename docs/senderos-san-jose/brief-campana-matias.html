@@ -1,0 +1,154 @@
+<title>Brief campaña Senderos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Interno · Matías y Daniel · prueba piloto de 30 días</span>
+    <h1>Brief de campaña: Senderos de San José</h1>
+    <p><strong>Objetivo de la prueba:</strong> demostrar con unos COP 50.000 al día lo que el proveedor actual no demuestra con 6 M al mes: conversaciones de compradores con presupuesto, visitas agendadas y cada número a la vista. No hace falta ganar en volumen; hay que ganar en claridad.</p>
+    <div class="meta"><span>Lotes desde $566-598 M (confirmar)</span><span>48 lotes · El Retiro</span><span>Destino: WhatsApp con el agente de Braina</span></div>
+  </header>
+
+  <section>
+    <span class="eyebrow">1 · Antes de crear nada</span>
+    <ol>
+      <li>Acceso como <strong>socio</strong> a la cuenta publicitaria de la constructora. Nada desde tu cuenta: la tarjeta y los recibos son suyos.</li>
+      <li>El número nuevo de WhatsApp conectado a la página y al agente de Braina (lo hace Daniel).</li>
+      <li>Precio «desde» confirmado por el dueño. Sin precio confirmado no se publica.</li>
+      <li>Mira en la <a href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=CO&amp;view_all_page_id=1126766254014315">Biblioteca de anuncios</a> qué tiene encendido el otro proveedor. Si los dos anunciáis desde la misma página al mismo público, os encarecéis el uno al otro: pregunta al dueño si se puede separar la zona o la edad.</li>
+      <li>Comprueba en la cuenta si te pide la categoría especial de vivienda. Si la pide, actívala: limita la segmentación, pero no hacerlo puede tumbar los anuncios.</li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="eyebrow">2 · Estructura</span>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Nivel</th><th>Configuración</th><th>Por qué</th></tr></thead>
+        <tbody>
+          <tr><td>Campaña</td><td>Objetivo <strong>Interacción</strong> → mensajes → WhatsApp. Nombre: <code>SSJ_Prueba_WA_2026-11</code></td><td>Queremos conversaciones que el agente califica</td></tr>
+          <tr><td>Conjunto</td><td><strong>Uno solo</strong>, COP 50.000/día. Ubicaciones Advantage+</td><td>Con este presupuesto, dividir deja a cada conjunto sin datos</td></tr>
+          <tr><td>Zona</td><td>Medellín (El Poblado, Envigado, Laureles, Belén), Sabaneta, Rionegro, La Ceja, El Retiro, Llanogrande</td><td>Donde vive el comprador probable y desde donde visita</td></tr>
+          <tr><td>Edad</td><td>35 a 65 años, sin intereses (o muy pocos)</td><td>El precio en el anuncio filtra; Meta encuentra al resto</td></tr>
+          <tr><td>Anuncios</td><td>3 piezas (abajo) en el mismo conjunto</td><td>Meta reparte hacia la que mejor funciona</td></tr>
+          <tr><td>Mensaje inicial</td><td>«Hola, quiero información de los lotes de Senderos de San José»</td><td>El agente sabe de qué anuncio viene</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">3 · Las tres piezas</span>
+    <div class="grid3">
+      <div class="box">
+        <span class="pill">A · Video 9:16</span>
+        <h3>Recorrido del lote</h3>
+        <p class="small">15-30 s con el material de la chica que graba, o dron. En los primeros 3 segundos: el paisaje y el precio en pantalla.</p>
+        <p class="small"><strong>Texto:</strong> «Así se ve un lote de 1.400 m² en El Retiro, a 45 minutos de Medellín. Lotes campestres desde $___ millones en unidad cerrada con reserva natural. Escríbanos y agende su visita.»</p>
+      </div>
+      <div class="box">
+        <span class="pill">B · Carrusel</span>
+        <h3>Zonas comunes</h3>
+        <p class="small">5-6 tarjetas: portería 24/7, club house, pádel y gimnasio, senderos, reserva natural de 14.000 m², el lote explanado.</p>
+        <p class="small"><strong>Texto:</strong> «Su casa de campo con todo resuelto: club house, pádel, gimnasio, senderos y portería 24/7. 48 lotes en El Retiro desde $___ millones.»</p>
+      </div>
+      <div class="box">
+        <span class="pill">C · Imagen 4:5</span>
+        <h3>Precio y ubicación</h3>
+        <p class="small">Foto aérea limpia. Titular grande: «Lotes campestres en El Retiro desde $___ M». Debajo: «48 lotes · 1.212 a 3.795 m² · 45 min de Medellín».</p>
+        <p class="small"><strong>Texto:</strong> «Primera etapa de Senderos de San José. Pocos lotes, unidad cerrada y lotes entregados explanados. Pregunte por disponibilidad y formas de pago.»</p>
+      </div>
+    </div>
+    <p class="muted small">Sin promesas de valorización ni de rentabilidad. Botón: «Enviar mensaje por WhatsApp».</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">4 · Reglas de la prueba</span>
+    <ul>
+      <li><strong>Días 1-7: no se toca nada.</strong> Ni presupuesto, ni público, ni piezas. Meta está aprendiendo.</li>
+      <li><strong>Cada día, 5 minutos:</strong> gasto, conversaciones, costo por conversación, CTR, CPM y frecuencia (las columnas guardadas como «Captación lotes»).</li>
+      <li><strong>Día 8:</strong> si una pieza tiene el doble de costo por conversación que las otras y más de 1.000 impresiones, se apaga y se sube otra.</li>
+      <li><strong>Frecuencia por encima de 3:</strong> piezas nuevas.</li>
+      <li><strong>Antes de publicar cualquier cambio, lo revisa Daniel.</strong></li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">5 · El informe (día 7, 14 y 30)</span>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Dato</th><th>De dónde sale</th></tr></thead>
+        <tbody>
+          <tr><td>Gasto real</td><td>Administrador de anuncios + recibos de Meta</td></tr>
+          <tr><td>Impresiones, alcance, frecuencia, CPM, CTR</td><td>Administrador de anuncios</td></tr>
+          <tr><td>Conversaciones y costo por conversación</td><td>Administrador de anuncios</td></tr>
+          <tr><td>Calificados (con presupuesto) y visitas agendadas</td><td>CRM de Braina</td></tr>
+          <tr><td>Tiempo de respuesta</td><td>CRM de Braina</td></tr>
+          <tr><td>Qué pieza funciona y qué cambiamos</td><td>Matías, en dos líneas</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="callout">El informe cierra siempre con la misma pregunta para el dueño: «¿Su proveedor actual le entrega estos números?». No hace falta decir nada más.</p>
+  </section>
+</main>

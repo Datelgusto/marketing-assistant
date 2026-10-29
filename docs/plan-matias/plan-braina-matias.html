@@ -1,0 +1,248 @@
+<title>Plan Braina × Matías</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+
+.lanes{display:flex;flex-direction:column;gap:14px}
+.lane{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:stretch}
+.lane-name{font-family:var(--display);font-weight:800;font-size:1rem;padding:12px;border-radius:6px;background:var(--fg);color:var(--bg);display:flex;flex-direction:column;justify-content:center;gap:2px}
+.lane-name small{font-family:var(--body);font-weight:400;font-size:.78rem;opacity:.8}
+.track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;position:relative}
+.node{border:1px solid var(--line);border-radius:6px;padding:9px 10px;background:var(--surface);display:flex;flex-direction:column;gap:3px;font-size:.84rem;min-width:0;position:relative}
+.node strong{font-family:var(--display);font-size:.9rem;line-height:1.2}
+.node .when{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.node.done{background:var(--accent-soft);border-color:var(--accent)}
+.node.now{background:var(--warn-soft);border-color:var(--warn);border-width:2px}
+.node.next{background:var(--blue-soft);border-color:var(--blue)}
+.node.goal{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.node.goal .when{color:var(--bg);opacity:.75}
+.node:not(:last-child)::after{content:"›";position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--muted);font-family:var(--mono);font-size:.9rem}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid var(--line)}
+.who{font-family:var(--mono);font-size:.72rem;padding:1px 7px;border-radius:99px;white-space:nowrap}
+.who.d{background:var(--blue-soft);color:var(--blue)}
+.who.m{background:var(--accent-soft);color:var(--accent)}
+.who.c{background:var(--warn-soft);color:var(--warn)}
+.who.dm{background:var(--bg);color:var(--fg);border:1px solid var(--line)}
+td input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
+@media (max-width:820px){.lane{grid-template-columns:1fr}.track{grid-template-columns:1fr 1fr}.node::after{display:none}}
+@media (max-width:420px){.track{grid-template-columns:1fr}}
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Interno · Daniel y Matías · 29 de octubre de 2026</span>
+    <h1>Plan Braina × Matías</h1>
+    <p>Lo que hemos hablado y lo que toca hacer, separado por cliente. La floristería es el caso rápido (se vende en horas y da un caso de éxito pronto); la constructora es el contrato grande. Las dos se trabajan igual: anuncios de Matías que traen gente y el agente de Braina que la contesta y la convierte.</p>
+    <div class="meta"><span>Floristería: Arango Flowers</span><span>Constructora: Senderos de San José</span><span>Llamada fija: lunes, 20 min</span></div>
+  </header>
+
+  <section>
+    <span class="eyebrow">El mapa</span>
+    <h2>Dónde estamos y hacia dónde vamos</h2>
+    <div class="legend"><span><i style="background:var(--accent-soft);border-color:var(--accent)"></i>Hecho</span><span><i style="background:var(--warn-soft);border-color:var(--warn)"></i>Esta semana</span><span><i style="background:var(--blue-soft);border-color:var(--blue)"></i>Próximas 2 semanas</span><span><i style="background:var(--fg)"></i>Meta</span></div>
+    <div class="lanes">
+      <div class="lane">
+        <div class="lane-name">Constructora<small>Senderos de San José</small></div>
+        <div class="track">
+          <div class="node done"><span class="when">28-29 oct</span><strong>Auditoría y PDF</strong><span>9 anuncios viejos, medición rota</span></div>
+          <div class="node now"><span class="when">30 oct</span><strong>Entregar PDF + prueba</strong><span>Acordar número y metas</span></div>
+          <div class="node next"><span class="when">3-5 nov</span><strong>Preparar</strong><span>Plantilla, cuenta, agente, piezas</span></div>
+          <div class="node next"><span class="when">~6 nov → 6 dic</span><strong>Prueba de 30 días</strong><span>Informes día 7, 14 y 30</span></div>
+          <div class="node goal"><span class="when">~6 dic</span><strong>Firma</strong><span>4 M + 1,5 M/mes + pauta de Matías</span></div>
+        </div>
+      </div>
+      <div class="lane">
+        <div class="lane-name">Floristería<small>Arango Flowers</small></div>
+        <div class="track">
+          <div class="node done"><span class="when">29 oct</span><strong>Auditoría inicial</strong><span>Caros, sin entrega hoy, anuncios sin precio</span></div>
+          <div class="node now"><span class="when">30 oct</span><strong>Chats + incógnito</strong><span>Saber por qué 89 → 0</span></div>
+          <div class="node next"><span class="when">3 nov</span><strong>Anuncios nuevos</strong><span>Precio, zona, grados y Navidad</span></div>
+          <div class="node next"><span class="when">5-10 nov</span><strong>Agente que vende</strong><span>Opciones, datos de entrega, pago Bold</span></div>
+          <div class="node goal"><span class="when">Navidad</span><strong>Caso de éxito</strong><span>Ventas con números</span></div>
+        </div>
+      </div>
+      <div class="lane">
+        <div class="lane-name">Alianza<small>Daniel × Matías</small></div>
+        <div class="track">
+          <div class="node done"><span class="when">28 oct</span><strong>Reunión</strong><span>Pack y reparto cruzado</span></div>
+          <div class="node now"><span class="when">30 oct</span><strong>Precio de Matías</strong><span>Su honorario de gestión</span></div>
+          <div class="node next"><span class="when">3 nov</span><strong>1.ª llamada de lunes</strong><span>Columnas, números, decisiones</span></div>
+          <div class="node next"><span class="when">nov</span><strong>Más clientes</strong><span>Sus 3-4 clientes y nuevas constructoras</span></div>
+          <div class="node goal"><span class="when">tras 2-3 cierres</span><strong>Fase 2</strong><span>Hablar de sociedad</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Constructora · Senderos de San José</span>
+    <h2>Lo que sabemos y lo que hemos decidido</h2>
+    <div class="grid2">
+      <div class="box">
+        <span class="pill bad">La situación</span>
+        <ul>
+          <li>El <strong>dueño</strong> paga unos <strong>COP 6 M al mes</strong> a otro chico por publicidad, sin saber en qué se va.</li>
+          <li>Ha dado el <strong>sí a una prueba de Matías</strong> con unos 50.000 al día, para comprobar su trabajo. Está dispuesto a invertir más si ve resultados.</li>
+          <li><strong>Auditoría:</strong> 9 anuncios en Meta, ninguno creado en 11 meses; la web no le dice a Meta ni a Google quién deja sus datos; formulario y chat desde la cuenta de JT Ads.</li>
+          <li>Tienen fotos, videos y una chica que graba.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <span class="pill">Lo decidido</span>
+        <ul>
+          <li><strong>Prueba piloto de 30 días</strong> con anuncios de Matías y el <strong>agente de Braina gratis</strong> (excepción por el tamaño del contrato).</li>
+          <li><strong>Número de WhatsApp nuevo</strong> de la constructora, solo para la campaña, para separar nuestros resultados de los del otro.</li>
+          <li>Pauta pagada por la constructora directamente a Meta, desde su cuenta. Matías entra como socio.</li>
+          <li>Metas propuestas: respuesta en menos de 1 min, 15+ conversaciones calificadas y 3+ visitas.</li>
+          <li>Día 30: si se cumple, precio de lista (4 M + 1,5 M/mes) + gestión de Matías.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Floristería · Arango Flowers</span>
+    <h2>Lo que sabemos y lo que vamos a hacer</h2>
+    <div class="grid2">
+      <div class="box">
+        <span class="pill bad">La situación</span>
+        <ul>
+          <li><strong>89 conversaciones de WhatsApp en 15 días y 0 ventas.</strong> Contesta «la gerente o algún trabajador».</li>
+          <li>Es una floristería <strong>cara</strong>: mediana de COP 435.000; la competencia vende 24 rosas por unos 170.000.</li>
+          <li><strong>No entregan el mismo día</strong> (un día de antelación); casi toda la competencia sí.</li>
+          <li>3 anuncios del 16-oct sin precio, sin zona de entrega y sin tocar desde entonces.</li>
+          <li>En la web el WhatsApp no se puede pulsar. Tienen pago online con Bold.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <span class="pill">La hipótesis y el plan</span>
+        <ul>
+          <li><strong>Hipótesis:</strong> el anuncio atrae a quien busca un ramo barato para hoy; le contestan tarde, con 400.000 y para mañana. Con 89 chats lo normal serían 5-12 ventas: hay un fallo de fondo.</li>
+          <li><strong>Anuncios nuevos</strong> con precio a la vista, zonas de renta alta y ocasiones: grados y Navidad.</li>
+          <li><strong>Campaña aparte de regalos para empresas</strong> en Navidad: lo caro y programado encaja ahí.</li>
+          <li><strong>Agente que vende:</strong> contesta al instante, 3 opciones por presupuesto con foto y precio, pide los datos de entrega y manda el enlace de Bold.</li>
+          <li>Preguntar si pueden <strong>entregar el mismo día</strong> con hora de corte.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Siguientes pasos</span>
+    <h2>Quién hace qué y cuándo</h2>
+    <p class="muted small"><span class="who d">Daniel</span> &nbsp;<span class="who m">Matías</span> &nbsp;<span class="who c">Cliente</span> &nbsp;<span class="who dm">Los dos</span> · El 31-oct y el 1-nov son de descanso y el 2-nov es festivo.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th></th><th>Acción</th><th>Quién</th><th>Cuándo</th></tr></thead>
+        <tbody>
+          <tr><td colspan="4"><strong>Constructora</strong></td></tr>
+          <tr><td><input type="checkbox" id="c1" aria-label="Hecho"></td><td>Preguntar a Matías si el proveedor actual es JT Ads</td><td><span class="who d">Daniel</span></td><td class="n">hoy</td></tr>
+          <tr><td><input type="checkbox" id="c2" aria-label="Hecho"></td><td>Capturas con fecha de los 9 anuncios y Tag Assistant en la web</td><td><span class="who d">Daniel</span></td><td class="n">30 oct</td></tr>
+          <tr><td><input type="checkbox" id="c3" aria-label="Hecho"></td><td>Incógnito: dejar datos en el formulario y el chat de la web y medir la respuesta</td><td><span class="who d">Daniel</span></td><td class="n">30 oct</td></tr>
+          <tr><td><input type="checkbox" id="c4" aria-label="Hecho"></td><td>Entregar al dueño el PDF de la auditoría y la página de la prueba; acordar número de WhatsApp, metas y fecha de inicio</td><td><span class="who dm">Los dos</span></td><td class="n">30 oct</td></tr>
+          <tr><td><input type="checkbox" id="c5" aria-label="Hecho"></td><td>Rellenar la plantilla de información del agente y pasar fotos y videos</td><td><span class="who c">Cliente</span></td><td class="n">3 nov</td></tr>
+          <tr><td><input type="checkbox" id="c6" aria-label="Hecho"></td><td>Dar a Matías acceso de socio a la cuenta publicitaria, con su tarjeta</td><td><span class="who c">Cliente</span></td><td class="n">3 nov</td></tr>
+          <tr><td><input type="checkbox" id="c7" aria-label="Hecho"></td><td>Montar el agente con la información real y enviar la demo al dueño</td><td><span class="who d">Daniel</span></td><td class="n">4-5 nov</td></tr>
+          <tr><td><input type="checkbox" id="c8" aria-label="Hecho"></td><td>Crear las 3 piezas y la campaña según el brief; Daniel revisa antes de publicar</td><td><span class="who m">Matías</span></td><td class="n">4-5 nov</td></tr>
+          <tr><td><input type="checkbox" id="c9" aria-label="Hecho"></td><td>Lanzar la prueba · informes el día 7, 14 y 30</td><td><span class="who dm">Los dos</span></td><td class="n">~6 nov</td></tr>
+          <tr><td colspan="4"><strong>Floristería</strong></td></tr>
+          <tr><td><input type="checkbox" id="f1" aria-label="Hecho"></td><td>Capturas de 10-15 de los 89 chats y datos de la campaña (gasto, objetivo, público, costo por conversación)</td><td><span class="who m">Matías</span></td><td class="n">30 oct</td></tr>
+          <tr><td><input type="checkbox" id="f2" aria-label="Hecho"></td><td>Incógnito al +57 318 629 8673 con el guion de 4 mensajes (un día laborable y un sábado)</td><td><span class="who d">Daniel</span></td><td class="n">30 oct</td></tr>
+          <tr><td><input type="checkbox" id="f3" aria-label="Hecho"></td><td>Preguntar a la gerente si pueden entregar el mismo día con hora de corte, y quién contesta los chats</td><td><span class="who m">Matías</span></td><td class="n">30 oct</td></tr>
+          <tr><td><input type="checkbox" id="f4" aria-label="Hecho"></td><td>Clasificar los chats: sin respuesta, precio, lo querían para hoy, fuera de zona, curiosos</td><td><span class="who d">Daniel</span></td><td class="n">3 nov</td></tr>
+          <tr><td><input type="checkbox" id="f5" aria-label="Hecho"></td><td>Anuncios nuevos con precio, zonas de renta alta y grados/Navidad; Daniel revisa</td><td><span class="who m">Matías</span></td><td class="n">3-4 nov</td></tr>
+          <tr><td><input type="checkbox" id="f6" aria-label="Hecho"></td><td>Proponer a la floristería el agente que vende (con los datos de los chats en la mano)</td><td><span class="who dm">Los dos</span></td><td class="n">5 nov</td></tr>
+          <tr><td><input type="checkbox" id="f7" aria-label="Hecho"></td><td>Campaña de regalos para empresas en Navidad</td><td><span class="who m">Matías</span></td><td class="n">10 nov</td></tr>
+          <tr><td colspan="4"><strong>Alianza</strong></td></tr>
+          <tr><td><input type="checkbox" id="a1" aria-label="Hecho"></td><td>Matías fija su precio de gestión de pauta (para el pack y para la constructora)</td><td><span class="who m">Matías</span></td><td class="n">30 oct</td></tr>
+          <tr><td><input type="checkbox" id="a2" aria-label="Hecho"></td><td>Primera llamada de lunes (20 min): columnas, números y decisiones de la semana</td><td><span class="who dm">Los dos</span></td><td class="n">3 nov</td></tr>
+          <tr><td><input type="checkbox" id="a3" aria-label="Hecho"></td><td>Matías presenta el pack a sus otros clientes que ya reciben leads</td><td><span class="who m">Matías</span></td><td class="n">nov</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Cómo trabajamos</span>
+    <div class="grid3">
+      <div class="box"><h3>Reparto</h3><p class="small">Quien trae al cliente se lleva el mismo porcentaje de lo que vende el otro, en las dos direcciones (base: 20 % de los pagos únicos y 10 % de la cuota durante 12 meses). Cada uno factura su parte.</p></div>
+      <div class="box"><h3>Aprendizaje de Matías</h3><p class="small">Llamada de 20 min cada lunes con las columnas del Administrador de anuncios. Ninguna campaña sale el primer mes sin que la revise Daniel.</p></div>
+      <div class="box"><h3>Regla de oro</h3><p class="small">Todo a nombre del cliente: cuenta publicitaria, tarjeta, número, píxel y datos. La transparencia es nuestra ventaja frente a quien cobra 6 M sin números.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Documentos</span>
+    <ul class="small">
+      <li>Auditoría de la constructora (PDF): <code>docs/senderos-san-jose/Auditoria-Senderos-de-San-Jose-Braina-IA.pdf</code></li>
+      <li>Prueba piloto, plantilla para el agente y brief de campaña: carpeta <code>docs/senderos-san-jose/</code></li>
+      <li>Auditoría inicial de la floristería: <code>docs/arango-flowers/auditoria-inicial.md</code></li>
+      <li>Alianza y calculadora del pack: <code>docs/reunion-matias/</code></li>
+    </ul>
+  </section>
+</main>
+<script>
+(function(){var ids=[].slice.call(document.querySelectorAll('td input[type=checkbox]'));
+try{var d=JSON.parse(localStorage.getItem('plan-matias')||'{}');ids.forEach(function(c){c.checked=!!d[c.id]})}catch(e){}
+ids.forEach(function(c){c.addEventListener('change',function(){try{var d={};ids.forEach(function(x){d[x.id]=x.checked});localStorage.setItem('plan-matias',JSON.stringify(d))}catch(e){}})});})();
+</script>
