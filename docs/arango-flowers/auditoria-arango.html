@@ -1,0 +1,160 @@
+<title>Auditoría Arango Flowers</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+
+main{gap:14px} h1{margin-bottom:6px} h2{margin-top:22px} blockquote{margin:0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 6px 6px 0;color:var(--muted)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;display:block;overflow-x:auto} th{background:var(--bg)} li{margin:2px 0} p,ul,ol,blockquote{margin:4px 0}</style>
+<main><h1>Arango Flowers · auditoría inicial (29-oct-2026)</h1>
+<blockquote>
+<p>Contexto: Matías lleva sus anuncios en Meta. En unos 15 días llegaron 89 conversaciones de WhatsApp y 0 ventas. Contesta «la gerente o algún trabajador».
+Investigación pública, en solo lectura. Lo marcado ✔ lo verifiqué yo en la web el 29-oct.</p>
+</blockquote>
+<h2>Quién es</h2>
+<ul>
+<li><strong>Floristería premium de Medellín.</strong> Tienda en Shopify (arangoflowers.com). Historia familiar: cultivos de anturios en Rionegro y Amagá; diseño de Liliana Peláez desde 2009.</li>
+<li><strong>Contacto:</strong> WhatsApp +57 318 629 8673 · teléfono (604) 448 0248 · ventas@arangoflowers.com.</li>
+<li><strong>La dirección no coincide entre fuentes:</strong></li>
+<li>La web dice Torre Milenio, oficina 1001.</li>
+<li>Los términos y los directorios dicen showroom en la Calle 11 #43C-39, El Poblado.</li>
+</ul>
+<h2>Hallazgos</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Hallazgo</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Son caros para el mercado</strong></td>
+<td>✔ 165 productos, mediana COP 435.000. Solo 10 cuestan 200.000 o menos. Competidores (Agatha y Valentina, Cattleya, floristeriasenmedellin): mediana de unos 180.000-200.000; 24 rosas a unos 170.000.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>No entregan el mismo día</strong></td>
+<td>✔ «Entregas programadas». Términos: mínimo 1 día de anticipación. Casi toda la competencia entrega hoy mismo con hora de corte.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Los anuncios no filtran</strong></td>
+<td>Biblioteca de Meta, página 256543954434428: 3 anuncios del 16-oct, sin cambios. Ninguno coincide con «precio», «envío» ni «domicilio»; hablan de «flores», «regalo» y «arreglos» (sondeo aproximado, no verificado).</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>WhatsApp no se puede pulsar en la web</strong></td>
+<td>✔ El número aparece como texto, sin enlace wa.me ni botón. Tampoco hay enlaces a Instagram ni Facebook, ni páginas de contacto, preguntas frecuentes o envíos.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Meta no aprende de las ventas</strong></td>
+<td>El píxel 1439319471215724 envía Purchase desde la tienda, pero las ventas cerradas por WhatsApp no vuelven a Meta. La campaña optimiza para «conversaciones» y trae curiosos.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Nadie es dueño de contestar</strong></td>
+<td>«La gerente o algún trabajador». Hay una reseña con una queja por «cobro excesivo y presión».</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Por qué 0 de 89 no es mala suerte:</strong> en LatAm suelen convertir en venta entre el 6 % y el 14 % de las conversaciones que llegan por anuncios de WhatsApp. Con 89 conversaciones se esperarían 5-12 ventas. Que salga 0 tiene una probabilidad de menos del 1 % si la conversión real es del 6 %. Hay un fallo de fondo, no es mala suerte.</p>
+<p><strong>Hipótesis principal:</strong>
+1. El anuncio, sin precio, atrae a gente que espera un ramo de unos 150.000 para hoy.
+2. Le contestan tarde, o con un precio de 300.000-900.000 y entrega para mañana.
+3. La conversación muere.</p>
+<h2>Plan de 7 días (propuesta)</h2>
+<ol>
+<li><strong>Clasificar los 89 chats:</strong> sin respuesta / tiempo de respuesta / objeción de precio / lo pedían para hoy / fuera de zona / curioso.</li>
+<li><strong>Incógnito</strong> al +57 318 629 8673, un día laborable a las 11:00 y un sábado por la tarde:</li>
+<li>«Hola, vi su anuncio. ¿Cuánto vale un ramo de rosas rojas? Es para mañana en Laureles.»</li>
+<li>«¿Tienen algo de unos 150 mil?»</li>
+<li>«¿Me lo pueden entregar hoy antes de las 6?»</li>
+<li>«Ok, ¿cómo pago? ¿Me mandan link?»</li>
+<li>Anotar el tiempo de respuesta, si mandan fotos con precio, si ofrecen alternativa, si piden los datos de entrega, si mandan enlace de pago (Bold) y si hacen seguimiento a las 24 h.</li>
+<li><strong>Anuncios nuevos (Matías):</strong></li>
+<li>Precio a la vista («Rosas desde 205.000 · entrega programada en Medellín»).</li>
+<li>Público de El Poblado, Envigado, Laureles y Belén.</li>
+<li>Ocasiones concretas: grados (nov-dic) y Navidad.</li>
+<li><strong>Ángulo empresas:</strong> premium con entrega programada encaja con regalos corporativos de Navidad y detalles a clientes. Es una campaña aparte, ideal para Matías.</li>
+<li><strong>WhatsApp que vende (Braina):</strong></li>
+<li>Contesta al instante.</li>
+<li>Manda 3 opciones según presupuesto, con foto y precio.</li>
+<li>Pide dirección, fecha, franja y mensaje de la tarjeta.</li>
+<li>Envía el enlace de pago de Bold.</li>
+<li>Hace seguimiento a las 24 h.</li>
+<li>Botón de WhatsApp en la web.</li>
+</ol>
+<h2>Picos de venta que vienen</h2>
+<ul>
+<li><strong>Grados:</strong> noviembre y diciembre.</li>
+<li><strong>Novenas y Navidad:</strong> 16-24 de diciembre.</li>
+<li><strong>San Valentín:</strong> domingo 14-feb-2027.</li>
+<li><strong>Día de la Mujer:</strong> lunes 8-mar-2027.</li>
+<li><strong>Día de la Madre:</strong> domingo 9-may-2027. Es en torno al 15 % de las ventas del año.</li>
+</ul>
+<h2>Preguntas abiertas</h2>
+<ul>
+<li>¿Pueden ofrecer entrega el mismo día con una hora de corte?</li>
+<li>¿Qué gasto, objetivo, público y coste por conversación tiene la campaña?</li>
+<li>¿Quién contesta, en qué horario y con qué mensaje de bienvenida?</li>
+<li>¿Tienen catálogo en WhatsApp Business y respuestas rápidas con precio?</li>
+</ul></main>

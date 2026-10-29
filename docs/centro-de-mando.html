@@ -1,0 +1,189 @@
+<title>Centro Braina × Matías</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+
+main{max-width:1060px}
+.ico{width:40px;height:40px;flex:none;color:var(--accent)}
+.today{background:var(--fg);color:var(--bg);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.today .eyebrow{color:var(--bg);opacity:.75}
+.today h2{color:var(--bg)}
+.today-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.today-list div{background:rgba(127,127,127,.18);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.today-list strong{font-family:var(--display);font-size:1.05rem}
+.today-list span{font-size:.92rem;opacity:.85}
+.clients{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.client{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.client-top{display:flex;gap:12px;align-items:center}
+.client h3{font-size:1.15rem}
+.client .sub{font-size:.85rem;color:var(--muted)}
+.bar{display:flex;gap:4px}
+.bar i{flex:1;height:8px;border-radius:4px;background:var(--line)}
+.bar i.on{background:var(--accent)}
+.bar i.cur{background:var(--warn)}
+.kv{display:flex;flex-direction:column;gap:6px;font-size:.9rem}
+.kv div{display:grid;grid-template-columns:96px 1fr;gap:8px}
+.kv b{font-family:var(--mono);font-size:.7rem;color:var(--muted);font-weight:500;padding-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.price{font-family:var(--mono);font-size:.82rem;background:var(--bg);border-radius:6px;padding:8px 10px;font-variant-numeric:tabular-nums}
+.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+.col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.col-head{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;font-family:var(--display);font-weight:800}
+.col-head.m{background:var(--accent-soft);color:var(--accent)}
+.col-head.c{background:var(--blue-soft);color:var(--blue)}
+.col-head.p{background:var(--bg);color:var(--fg);border:1px solid var(--line)}
+.col-head small{font-family:var(--body);font-weight:400;font-size:.8rem;opacity:.85;margin-left:auto}
+a.doc{display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;text-decoration:none;color:var(--fg);transition:border-color .15s,transform .15s}
+a.doc:hover,a.doc:focus-visible{border-color:var(--accent);transform:translateY(-1px)}
+a.doc strong{font-family:var(--display);font-size:.98rem;display:flex;justify-content:space-between;gap:8px}
+a.doc strong::after{content:"Abrir →";font-family:var(--mono);font-size:.7rem;color:var(--accent);font-weight:500;white-space:nowrap;padding-top:3px}
+a.doc span{font-size:.86rem;color:var(--muted)}
+a.doc em{font-style:normal;font-family:var(--mono);font-size:.68rem;color:var(--warn)}
+@media (max-width:860px){.today-list,.clients,.docs{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){a.doc{transition:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-house" viewBox="0 0 48 48"><path d="M6 40h36" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M10 40V22L24 10l14 12v18" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><rect x="20" y="28" width="8" height="12" fill="none" stroke="currentColor" stroke-width="3"/></symbol>
+    <symbol id="i-flower" viewBox="0 0 48 48"><circle cx="24" cy="16" r="4" fill="currentColor"/><circle cx="24" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="24" r="5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 29v14M24 38c-4-1-7-4-8-8M24 35c4-1 6-3 7-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-hands" viewBox="0 0 48 48"><path d="M4 22l8-8 8 4 6-4 8 2 10 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M12 26l10 10c2 2 4 2 6 0l10-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 22l6 6M18 26l6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<main>
+  <header>
+    <span class="eyebrow">Daniel · centro de mando · actualizado el 29-oct-2026</span>
+    <h1>Braina × Matías: todo en un sitio</h1>
+    <p>Qué toca ahora, cómo va cada cliente y todos los documentos, separados por para quién son. Guarda este enlace: es el único que necesitas.</p>
+  </header>
+
+  <section class="today">
+    <span class="eyebrow">Mañana, viernes 30 de octubre</span>
+    <h2>Las 3 conversaciones que importan</h2>
+    <div class="today-list">
+      <div><strong>1 · Dueño de la constructora</strong><span>Enseñar la auditoría y la prueba piloto. Acordar número de WhatsApp, fecha de inicio y comisión por lote (buscando el 5 %).</span></div>
+      <div><strong>2 · Floristería</strong><span>Ofrecer 7 días gratis del agente a cambio de testimonio. La pauta pasa a su tarjeta.</span></div>
+      <div><strong>3 · Matías</strong><span>Mandarle el resumen. Que pase capturas de 10-15 chats de la floristería y los datos de la campaña.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Cómo va cada frente</span>
+    <div class="clients">
+      <div class="client">
+        <div class="client-top"><svg class="ico"><use href="#i-house"/></svg><div><h3>Constructora</h3><span class="sub">Senderos de San José · El Retiro</span></div></div>
+        <div class="bar" aria-label="Paso 2 de 5"><i class="on"></i><i class="cur"></i><i></i><i></i><i></i></div>
+        <div class="kv">
+          <div><b>Estado</b><span>Auditoría hecha. Propuesta de prueba lista.</span></div>
+          <div><b>Siguiente</b><span>Reunión con el dueño (30-oct) · prueba de 30 días desde ~6-nov</span></div>
+          <div><b>Meta</b><span>Contrato firmado ~6-dic</span></div>
+        </div>
+        <div class="price">Braina 4 M + 1,5 M/mes · Matías 1,5 M/mes · pauta ~3 M/mes del cliente · comisión por lote a negociar</div>
+      </div>
+      <div class="client">
+        <div class="client-top"><svg class="ico"><use href="#i-flower"/></svg><div><h3>Floristería</h3><span class="sub">Arango Flowers · Medellín</span></div></div>
+        <div class="bar" aria-label="Paso 2 de 5"><i class="on"></i><i class="cur"></i><i></i><i></i><i></i></div>
+        <div class="kv">
+          <div><b>Estado</b><span>87 conversaciones, 0 ventas. Sabemos por qué.</span></div>
+          <div><b>Siguiente</b><span>Capturas de chats (30-oct) · anuncios nuevos (3-nov) · 7 días gratis del agente (5-nov)</span></div>
+          <div><b>Meta</b><span>Ventas y testimonio para Navidad</span></div>
+        </div>
+        <div class="price">Tras 7 días: Braina 1,5 M/mes · Matías 1,5 M/mes · pauta de la floristería</div>
+      </div>
+      <div class="client">
+        <div class="client-top"><svg class="ico"><use href="#i-hands"/></svg><div><h3>Alianza</h3><span class="sub">Daniel mentor · Matías aliado</span></div></div>
+        <div class="bar" aria-label="Paso 2 de 5"><i class="on"></i><i class="cur"></i><i></i><i></i><i></i></div>
+        <div class="kv">
+          <div><b>Estado</b><span>Pack, reparto y precios acordados</span></div>
+          <div><b>Siguiente</b><span>Primera llamada de lunes (3-nov) · semana 1 de formación</span></div>
+          <div><b>Meta</b><span>Fase 2 tras 2-3 clientes cerrados juntos</span></div>
+        </div>
+        <div class="price">Reglas: la pauta la paga el cliente · Matías nunca cobra más que Braina · precio firmado antes de cada prueba</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Documentos</span>
+    <h2>Todo lo que hemos hecho, por destinatario</h2>
+    <div class="docs">
+      <div class="col">
+        <div class="col-head m">Para Matías <small>se pueden mandar</small></div>
+        <a class="doc" href="https://claude.ai/artifact/8zGbfR3SmpQvJbLFQNiwTT"><strong>Resumen de hoy</strong><span>El principal: sistema, alianza, constructora y floristería, con precios, pasos y fechas.</span></a>
+        <a class="doc" href="https://claude.ai/artifact/7G4D6LKmGhnn96ZKx6Ej3J"><strong>Auditoría de la constructora</strong><span>La publicidad actual: 11 meses sin anuncios nuevos y la web sin medir.</span></a>
+        <a class="doc" href="https://claude.ai/artifact/AcFhTB1FpDvkmpS17Q9TYR"><strong>Brief de campaña</strong><span>Cómo montar los anuncios de la prueba de la constructora.</span><em>Mandar el 4-nov</em></a>
+      </div>
+      <div class="col">
+        <div class="col-head c">Para la constructora <small>dueño</small></div>
+        <a class="doc" href="https://claude.ai/artifact/7G4D6LKmGhnn96ZKx6Ej3J"><strong>Auditoría</strong><span>Qué pasa hoy con los 6 M al mes que invierte.</span><em>Mañana</em></a>
+        <a class="doc" href="https://claude.ai/artifact/7DpNSbpsAWft5rRdaRkCEe"><strong>Prueba piloto de 30 días</strong><span>La propuesta con metas, precios y condiciones para firmar.</span><em>Mañana</em></a>
+        <a class="doc" href="https://claude.ai/artifact/Bkyp923hhUapXdNCEud2oW"><strong>Plantilla para el agente</strong><span>Información de lotes, pagos y visitas que tiene que rellenar.</span><em>Cuando diga que sí</em></a>
+      </div>
+      <div class="col">
+        <div class="col-head p">Solo para ti <small>no compartir</small></div>
+        <a class="doc" href="https://claude.ai/artifact/NBKecDKmbCSRrYtyCJoGqY"><strong>Auditoría de la floristería</strong><span>Precios, competencia y guion del incógnito.</span></a>
+        <a class="doc" href="https://claude.ai/artifact/Ly9c4u1FNawzqhdZK8EEje"><strong>Notas privadas de la constructora</strong><span>Comprobaciones a mano, preguntas y lo delicado.</span></a>
+        <a class="doc" href="https://claude.ai/artifact/DwyjhjDte48un79fi6sXWo"><strong>Mentoría de Matías</strong><span>Su plan de formación y los hitos del caso de éxito.</span></a>
+        <a class="doc" href="https://claude.ai/artifact/Sc8LktnxchkmFZgFueLxWZ"><strong>Calculadora de la alianza</strong><span>Cuánto gana cada uno según quién trae al cliente.</span></a>
+      </div>
+    </div>
+  </section>
+</main>

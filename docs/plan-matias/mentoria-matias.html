@@ -1,0 +1,151 @@
+<title>Mentoría de Matías</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+
+main{gap:14px} h1{margin-bottom:6px} h2{margin-top:22px} blockquote{margin:0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 6px 6px 0;color:var(--muted)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:6px;display:block;overflow-x:auto} th{background:var(--bg)} li{margin:2px 0} p,ul,ol,blockquote{margin:4px 0}</style>
+<main><h1>Mentoría de Matías · caso de éxito en construcción</h1>
+<blockquote>
+<p>Inicio: 28-oct-2026. Mentor: Daniel Domínguez (Braina IA).
+Matías tiene 17 años (cumple 18 en noviembre), muchas ganas y potencial. Ya tiene su propia agencia con clientes reales: una floristería (Arango Flowers) y una constructora (Senderos de San José).
+El objetivo es que en unos meses lleve solo el ciclo completo: cuentas, anuncios, números, informe y venta. Todo queda documentado para contarlo como caso de éxito.</p>
+</blockquote>
+<h2>El punto de partida (28-oct)</h2>
+<ul>
+<li><strong>Floristería:</strong> 89 conversaciones en 15 días y 0 ventas. La pauta va con su tarjeta, junto con el honorario.</li>
+<li><strong>Constructora:</strong> el dueño le da una prueba de 50.000/día frente a un proveedor de 6 M/mes.</li>
+<li><strong>Primer cambio:</strong> separar honorario y pauta. El cliente paga la pauta con su tarjeta, desde su cuenta, y Matías factura solo su gestión (2 M en la floristería). Es la base de la transparencia que nos diferencia.</li>
+</ul>
+<h2>Plan de formación (aprender haciendo con los dos clientes)</h2>
+<table>
+<thead>
+<tr>
+<th>Semana</th>
+<th>Tema</th>
+<th>Entregable de Matías</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 · 3-7 nov</td>
+<td>Business Manager, cuentas, roles de socio, píxel, tarjeta del cliente</td>
+<td>La floristería y la constructora con todo a su nombre y Matías como socio</td>
+</tr>
+<tr>
+<td>2 · 10-14 nov</td>
+<td>Leer los números: CPM, CTR, CPC, conversaciones, costo por conversación, frecuencia</td>
+<td>Columnas guardadas y una lectura diaria de 5 minutos</td>
+</tr>
+<tr>
+<td>3 · 17-21 nov</td>
+<td>Piezas que venden: precio a la vista, gancho, una idea por anuncio</td>
+<td>Anuncios nuevos de la floristería (grados y Navidad)</td>
+</tr>
+<tr>
+<td>4 · 24-28 nov</td>
+<td>Del chat a la venta: agente, CRM, calificar, agendar, pago</td>
+<td>Clasificación de chats y propuesta del agente a la floristería</td>
+</tr>
+<tr>
+<td>Diciembre</td>
+<td>Informe y presentación al cliente; después IA y Claude</td>
+<td>El informe del día 30 de la constructora, hecho por él</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ritmo:</strong> llamada de 20 min cada lunes. El primer mes, Daniel revisa cada campaña antes de publicarla.</p>
+<h2>Diario del caso (rellenar cada lunes)</h2>
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Qué hizo Matías</th>
+<th>Resultado / número</th>
+<th>Qué aprendió</th>
+<th>Siguiente reto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>28-oct</td>
+<td>Reunión de alianza: pack y reparto cruzado</td>
+<td>—</td>
+<td>Cómo se vende el problema, no el chatbot</td>
+<td>Fijar su precio de gestión</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Hitos para contarlo como caso de éxito</h2>
+<ul>
+<li>[ ] Primera cuenta de un cliente montada a su nombre, con Matías como socio.</li>
+<li>[ ] Primer informe con gasto real y recibos de Meta.</li>
+<li>[ ] Primera venta atribuida en la floristería.</li>
+<li>[ ] Prueba de la constructora superada y contrato firmado.</li>
+<li>[ ] Primer cliente que trae él solo para el pack.</li>
+<li>[ ] Cumple 18, formaliza su empresa y factura solo.</li>
+</ul>
+<p><strong>Material para el caso:</strong> capturas de antes y después, números de cada mes, una frase suya al principio y otra a los 3 meses, y la del cliente.</p></main>
