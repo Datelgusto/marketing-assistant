@@ -1,0 +1,245 @@
+<title>Resumen Daniel y Matías</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+
+.ico{width:44px;height:44px;flex:none;color:var(--accent)}
+.ico.big{width:56px;height:56px}
+.sys{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:stretch}
+.sys .st{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;position:relative;min-width:0}
+.sys .st strong{font-family:var(--display);font-size:.98rem}
+.sys .st span{font-size:.84rem;color:var(--muted)}
+.sys .st .tag{font-family:var(--mono);font-size:.66rem;padding:1px 7px;border-radius:99px}
+.tag.m{background:var(--accent-soft);color:var(--accent)}
+.tag.b{background:var(--blue-soft);color:var(--blue)}
+.sys .st:not(:last-child)::after{content:"→";position:absolute;right:-11px;top:38%;color:var(--muted);font-family:var(--mono)}
+.part{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:16px}
+.part-head{display:flex;gap:14px;align-items:center}
+.part-head h2{font-size:1.5rem}
+.part-head p{color:var(--muted);font-size:.95rem}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cols>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.cols h3{font-size:.95rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-weight:500;color:var(--muted)}
+.road{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.road div{border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;font-size:.86rem;min-width:0;border:1px solid var(--line);background:var(--bg)}
+.road div b{font-family:var(--mono);font-size:.68rem;color:var(--muted);font-weight:500}
+.road div strong{font-family:var(--display);font-size:.92rem}
+.road div.now{border:2px solid var(--warn);background:var(--warn-soft)}
+.road div.goal{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.road div.goal b{color:var(--bg);opacity:.75}
+.steps{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.steps .row{display:grid;grid-template-columns:24px 1fr 92px 64px;gap:10px;align-items:start;padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.steps input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+.who{font-family:var(--mono);font-size:.7rem;padding:2px 7px;border-radius:99px;text-align:center;white-space:nowrap}
+.who.d{background:var(--blue-soft);color:var(--blue)}
+.who.m{background:var(--accent-soft);color:var(--accent)}
+.who.j{background:var(--bg);color:var(--fg);border:1px solid var(--line)}
+.who.c{background:var(--warn-soft);color:var(--warn)}
+.when{font-family:var(--mono);font-size:.78rem;color:var(--muted);text-align:right}
+.num{font-family:var(--display);font-size:1.7rem;font-weight:800;line-height:1}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.facts div{background:var(--bg);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:4px;min-width:0;font-size:.86rem}
+@media (max-width:760px){.sys{grid-template-columns:1fr 1fr}.sys .st::after{display:none}.cols,.facts{grid-template-columns:1fr}.road{grid-template-columns:1fr 1fr}.steps .row{grid-template-columns:24px 1fr 80px}.steps .when{grid-column:2;text-align:left}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mega" viewBox="0 0 48 48"><path d="M8 20v8h6l16 9V11L14 20z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M14 28l3 10h5l-2-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M36 18c3 3 3 9 0 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 48 48"><path d="M8 10h32v22H20l-9 7v-7H8z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="17" cy="21" r="2.4" fill="currentColor"/><circle cx="24" cy="21" r="2.4" fill="currentColor"/><circle cx="31" cy="21" r="2.4" fill="currentColor"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 48 48"><rect x="9" y="15" width="30" height="22" rx="6" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="18" cy="26" r="3" fill="currentColor"/><circle cx="30" cy="26" r="3" fill="currentColor"/><path d="M24 15V8M20 8h8M5 24v6M43 24v6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-crm" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M8 18h32M8 28h32M20 8v32" fill="none" stroke="currentColor" stroke-width="3"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 48 48"><path d="M8 40h32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><rect x="11" y="26" width="6" height="12" fill="currentColor"/><rect x="21" y="18" width="6" height="20" fill="currentColor"/><rect x="31" y="10" width="6" height="28" fill="currentColor"/></symbol>
+    <symbol id="i-hands" viewBox="0 0 48 48"><path d="M4 22l8-8 8 4 6-4 8 2 10 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M12 26l10 10c2 2 4 2 6 0l10-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 22l6 6M18 26l6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-house" viewBox="0 0 48 48"><path d="M6 40h36" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M10 40V22L24 10l14 12v18" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><rect x="20" y="28" width="8" height="12" fill="none" stroke="currentColor" stroke-width="3"/><path d="M36 8c-4 0-6 3-6 6M40 14c0-3-2-6-4-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-flower" viewBox="0 0 48 48"><circle cx="24" cy="16" r="4" fill="currentColor"/><circle cx="24" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="24" r="5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 29v14M24 38c-4-1-7-4-8-8M24 35c4-1 6-3 7-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<main>
+  <header>
+    <span class="eyebrow">Daniel y Matías · 29 de octubre de 2026</span>
+    <h1>Lo que hablamos hoy y lo que hacemos ahora</h1>
+    <p>Trabajamos juntos para vender un sistema completo de captación, no anuncios sueltos ni un chatbot. Empezamos con dos clientes: la constructora Senderos de San José y la floristería Arango Flowers.</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">Lo que vendemos</span>
+    <h2>El sistema, de principio a fin</h2>
+    <div class="sys">
+      <div class="st"><svg class="ico"><use href="#i-mega"/></svg><strong>Anuncios</strong><span>Traen interesados</span><span class="tag m">Matías</span></div>
+      <div class="st"><svg class="ico"><use href="#i-chat"/></svg><strong>WhatsApp</strong><span>El interesado escribe</span><span class="tag b">Braina</span></div>
+      <div class="st"><svg class="ico"><use href="#i-bot"/></svg><strong>Agente</strong><span>Contesta en segundos y califica</span><span class="tag b">Braina</span></div>
+      <div class="st"><svg class="ico"><use href="#i-crm"/></svg><strong>CRM</strong><span>Ficha de cada cliente, por estados</span><span class="tag b">Braina</span></div>
+      <div class="st"><svg class="ico"><use href="#i-chart"/></svg><strong>Informe</strong><span>Números claros para el cliente</span><span class="tag m">Juntos</span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">El camino</span>
+    <div class="road">
+      <div class="now"><b>Esta semana</b><strong>Hablar con los dos clientes</strong><span>Auditoría, prueba y acuerdos</span></div>
+      <div><b>3-7 nov</b><strong>Preparar</strong><span>Cuentas, agente y anuncios</span></div>
+      <div><b>Noviembre</b><strong>Pruebas en marcha</strong><span>Floristería 7 días · constructora 30 días</span></div>
+      <div class="goal"><b>Diciembre</b><strong>Casos de éxito</strong><span>Números, testimonios y contratos</span></div>
+    </div>
+  </section>
+
+  <div class="part">
+    <div class="part-head"><svg class="ico big"><use href="#i-hands"/></svg><div><span class="eyebrow">1 · Nuestra alianza</span><h2>Cómo trabajamos juntos</h2></div></div>
+    <div class="cols">
+      <div>
+        <h3>Lo que acordamos</h3>
+        <ul>
+          <li><strong>Por fases:</strong> primero clientes juntos, cada uno con su parte y por escrito. Tras 2-3 clientes cerrados, hablamos de algo más grande.</li>
+          <li><strong>Reparto:</strong> quien trae al cliente se lleva el mismo porcentaje de lo que vende el otro, en las dos direcciones.</li>
+          <li><strong>Cobro claro:</strong> la pauta la paga el cliente con su tarjeta, desde su cuenta. Nosotros cobramos solo nuestro trabajo. Matías, su gestión; Braina, el sistema.</li>
+          <li><strong>Pruebas gratis para entrar en Medellín</strong> a cambio de testimonio y permiso para enseñar el caso.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Cómo aprendemos</h3>
+        <ul>
+          <li><strong>Llamada de 20 minutos cada lunes</strong> para mirar números y decidir la semana.</li>
+          <li><strong>El primer mes, Daniel revisa cada campaña</strong> antes de publicarla.</li>
+          <li><strong>Plan de formación con los dos clientes:</strong> cuentas y accesos → leer los números → anuncios que venden → del chat a la venta → informe para el cliente.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="row"><input type="checkbox" id="a1" aria-label="Hecho"><span>Primera llamada de lunes</span><span class="who j">Juntos</span><span class="when">3 nov</span></div>
+      <div class="row"><input type="checkbox" id="a2" aria-label="Hecho"><span>Cada cliente con su cuenta publicitaria, su tarjeta y Matías como socio</span><span class="who m">Matías</span><span class="when">3-7 nov</span></div>
+    </div>
+  </div>
+
+  <div class="part">
+    <div class="part-head"><svg class="ico big"><use href="#i-house"/></svg><div><span class="eyebrow">2 · Constructora</span><h2>Senderos de San José</h2><p>Lotes campestres en El Retiro · el cliente grande</p></div></div>
+    <div class="facts">
+      <div><span class="num">6 M</span>al mes pagan hoy por publicidad, sin ver resultados claros</div>
+      <div><span class="num">0</span>anuncios nuevos en Meta en 11 meses, según nuestra auditoría</div>
+      <div><span class="num">50.000</span>al día nos deja probar el dueño, para ver qué hacemos</div>
+    </div>
+    <div class="cols">
+      <div>
+        <h3>El plan</h3>
+        <ul>
+          <li><strong>Prueba de 30 días:</strong> anuncios de Matías y el agente de Braina gratis durante la prueba.</li>
+          <li><strong>Número de WhatsApp nuevo</strong> de la constructora, solo para la campaña, para que nuestros resultados se vean aparte.</li>
+          <li><strong>Informes el día 7, 14 y 30</strong> con gasto, conversaciones, compradores calificados y visitas.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Lo que hay que negociar</h3>
+        <ul>
+          <li><strong>Comisión por lote:</strong> la constructora suele pagar un 5 % por lote vendido. Hay que hablar qué parte nos toca si el comprador entra por nuestro sistema. Un lote cuesta más de 560 millones.</li>
+          <li>Si la prueba sale bien: el sistema completo con cuota mensual y la gestión de Matías.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="row"><input type="checkbox" id="c1" aria-label="Hecho"><span>Entregar al dueño la auditoría y la propuesta de prueba</span><span class="who j">Juntos</span><span class="when">30 oct</span></div>
+      <div class="row"><input type="checkbox" id="c2" aria-label="Hecho"><span>Acordar con el dueño el número de WhatsApp, la fecha de inicio y la comisión por lote</span><span class="who j">Juntos</span><span class="when">30 oct</span></div>
+      <div class="row"><input type="checkbox" id="c3" aria-label="Hecho"><span>Recibir de la constructora la información de los lotes, fotos, videos y el acceso a su cuenta</span><span class="who c">Cliente</span><span class="when">3 nov</span></div>
+      <div class="row"><input type="checkbox" id="c4" aria-label="Hecho"><span>Montar el agente con la información real y mandar la demo al dueño</span><span class="who d">Daniel</span><span class="when">4-5 nov</span></div>
+      <div class="row"><input type="checkbox" id="c5" aria-label="Hecho"><span>Crear los 3 anuncios del brief (video, carrusel e imagen con precio)</span><span class="who m">Matías</span><span class="when">4-5 nov</span></div>
+      <div class="row"><input type="checkbox" id="c6" aria-label="Hecho"><span>Lanzar la prueba y mandar el primer informe a los 7 días</span><span class="who j">Juntos</span><span class="when">~6 nov</span></div>
+    </div>
+  </div>
+
+  <div class="part">
+    <div class="part-head"><svg class="ico big"><use href="#i-flower"/></svg><div><span class="eyebrow">3 · Floristería</span><h2>Arango Flowers</h2><p>El caso rápido: las flores se venden en horas</p></div></div>
+    <div class="facts">
+      <div><span class="num">300.000</span>pesos de pauta en 15 días</div>
+      <div><span class="num">87</span>conversaciones de WhatsApp: los anuncios funcionan, y salen muy baratas</div>
+      <div><span class="num">0</span>ventas: el problema está después del chat</div>
+    </div>
+    <div class="cols">
+      <div>
+        <h3>Por qué no venden</h3>
+        <ul>
+          <li><strong>Precio:</strong> son una floristería cara (la mitad de sus arreglos pasa de 430.000) y el anuncio no lo dice.</li>
+          <li><strong>Entrega:</strong> piden un día de antelación; casi toda la competencia entrega el mismo día.</li>
+          <li><strong>Atención:</strong> no hay una persona fija que conteste rápido.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>El plan</h3>
+        <ul>
+          <li><strong>7 días gratis del agente:</strong> contesta al instante, enseña opciones con foto y precio, pide los datos de entrega y manda el enlace de pago.</li>
+          <li><strong>Anuncios nuevos</strong> con precio a la vista, en El Poblado, Envigado y Laureles, para grados y Navidad.</li>
+          <li><strong>Campaña de regalos para empresas</strong> en Navidad.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="row"><input type="checkbox" id="f1" aria-label="Hecho"><span>Pasar capturas de 10-15 conversaciones y los datos de la campaña</span><span class="who m">Matías</span><span class="when">30 oct</span></div>
+      <div class="row"><input type="checkbox" id="f2" aria-label="Hecho"><span>Cerrar el acuerdo de anuncios con la floristería (pauta con su tarjeta)</span><span class="who j">Juntos</span><span class="when">30 oct</span></div>
+      <div class="row"><input type="checkbox" id="f3" aria-label="Hecho"><span>Preguntar si pueden entregar el mismo día y quién contesta los chats</span><span class="who m">Matías</span><span class="when">30 oct</span></div>
+      <div class="row"><input type="checkbox" id="f4" aria-label="Hecho"><span>Anuncios nuevos con precio y zona (Daniel los revisa)</span><span class="who m">Matías</span><span class="when">3-4 nov</span></div>
+      <div class="row"><input type="checkbox" id="f5" aria-label="Hecho"><span>Montar el agente y arrancar los 7 días gratis</span><span class="who d">Daniel</span><span class="when">5 nov</span></div>
+      <div class="row"><input type="checkbox" id="f6" aria-label="Hecho"><span>Campaña de regalos para empresas en Navidad</span><span class="who m">Matías</span><span class="when">10 nov</span></div>
+    </div>
+  </div>
+</main>
+<script>
+(function(){var ids=[].slice.call(document.querySelectorAll('.steps input'));
+try{var d=JSON.parse(localStorage.getItem('resumen-matias')||'{}');ids.forEach(function(c){c.checked=!!d[c.id]})}catch(e){}
+ids.forEach(function(c){c.addEventListener('change',function(){try{var d={};ids.forEach(function(x){d[x.id]=x.checked});localStorage.setItem('resumen-matias',JSON.stringify(d))}catch(e){}})});})();
+</script>
