@@ -42,3 +42,10 @@
 - **El número de WhatsApp lo pone la constructora.** Falta acordar con el dueño cuál y cómo.
 - **Contenido:** tienen fotos y videos de los lotes, y una chica que graba. Si hace falta, se graba en el lote.
 - **Prueba de pauta de Matías:** unos COP 50.000/día, en paralelo con el proveedor actual (COP 6 M/mes).
+
+## Biblioteca de Anuncios, revisada otra vez el 2-nov-2026
+- Página "Senderos de San Jose" (ID 1126766254014315): **0 anuncios encendidos**.
+- Solo aparecen 3 anuncios, los 3 inactivos: 651875287802357, 845940538096266 y 1231090082173253, que ya estaban inactivos el 28-oct.
+- **Los 6 que estaban activos el 28-oct ya no aparecen ni como inactivos:** 755694920154493, 1065970028980418, 846496644762853, 1527045868438053, 2686862044988129 y 1045950361567167. Lo más probable es que se borraran, no que solo se pausaran (sin confirmar).
+- No hay anuncios nuevos de Senderos en otra página con ese nombre.
+- **Hacer:** capturas con fecha de la Biblioteca hoy, como prueba.

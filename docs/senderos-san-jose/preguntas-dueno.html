@@ -1,0 +1,135 @@
+<title>Preguntas al dueño de Senderos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>/* Layout: documento de trabajo de una columna; bloques con borde fino, tablas con scroll propio, diagrama en rejilla */
+:root{
+  --bg:#f4f4f1; --surface:#ffffff; --fg:#1c2024; --muted:#5d656d; --line:#d7dad5;
+  --accent:#2f5d3a; --accent-soft:#e3eee5; --blue:#1d4ed8; --blue-soft:#e3ebfd;
+  --bad:#b42318; --bad-soft:#fbe9e7; --warn:#a15c07; --warn-soft:#fdf1e0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1a1e1b; --fg:#e6e9e6; --muted:#9ba49d; --line:#2c332e;
+  --accent:#8fcf9c; --accent-soft:#1e3324; --blue:#8fb0ff; --blue-soft:#1c2747;
+  --bad:#ff8a7a; --bad-soft:#3a1d19; --warn:#f2b261; --warn-soft:#3a2a14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.4rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:70ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;overflow-wrap:anywhere}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{align-self:flex-start;display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.blue{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+ul,ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fill td{height:34px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.flow .step{flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem}
+.flow .step strong{font-family:var(--display);font-size:.95rem}
+.flow .arrow{align-self:center;color:var(--muted);font-family:var(--mono)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.sig div{border-top:1px solid var(--fg);padding-top:6px;font-size:.85rem;color:var(--muted)}
+.callout{border-left:3px solid var(--accent);padding-left:12px}
+@media (max-width:720px){.grid2,.grid3,.sig{grid-template-columns:1fr}.flow .arrow{display:none}}
+
+.q{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;grid-template-columns:34px 1fr;gap:4px 12px;break-inside:avoid}
+.q b.n{font-family:var(--display);font-size:1.1rem;color:var(--accent)}
+.q p.t{font-weight:600;font-size:1.02rem}
+.q p.why{grid-column:2;font-size:.85rem;color:var(--muted)}
+.q .lines{grid-column:2;height:58px;background:repeating-linear-gradient(to bottom,transparent 0 27px,var(--line) 27px 28px)}
+.block{display:flex;flex-direction:column;gap:10px}
+.block-head{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:6px}
+.block-head h2{font-size:1.25rem}
+.block-head span{font-size:.88rem;color:var(--muted)}
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:720px){.tips{grid-template-columns:1fr}}
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Daniel y Matías · para la reunión con el dueño de Senderos de San José</span>
+    <h1>Preguntas para conocer cómo venden hoy</h1>
+    <p>Antes de enseñar la presentación, escuchar. Estas preguntas sacan a la luz lo que le duele hoy, con sus propias palabras y sus números. Luego la presentación responde justo a eso.</p>
+  </header>
+
+  <section>
+    <div class="tips">
+      <div class="box"><h3>Escuchar, no vender</h3><p class="small">Él habla el 70 % del tiempo. No explicar el sistema hasta el final.</p></div>
+      <div class="box"><h3>Apuntar sus palabras</h3><p class="small">Sus frases exactas y sus números. Después se usan en la propuesta.</p></div>
+      <div class="box"><h3>Ir con calma</h3><p class="small">Una pregunta cada vez. Si dice algo importante: «¿Y eso cómo le afecta?».</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>1 · Cómo venden hoy</h2><span>Para entender su día a día</span></div>
+    <div class="q"><b class="n">1</b><p class="t">¿Cuántos lotes le quedan por vender de esta etapa? ¿Cuántos han vendido este año?</p><p class="why">Nos da el tamaño del reto y el valor de cada venta.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">2</b><p class="t">¿Cómo le llegan hoy los compradores? ¿Facebook, recomendados, inmobiliarias, la valla, la sala de ventas?</p><p class="why">Saber qué canal le funciona y cuál no.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">3</b><p class="t">Cuando alguien escribe preguntando por un lote, ¿quién le contesta? ¿En qué horario?</p><p class="why">Aquí suele aparecer el problema de la respuesta lenta.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">4</b><p class="t">¿Y si escriben de noche, o un sábado por la tarde, o un domingo?</p><p class="why">Los compradores de lotes miran el celular por la noche y el fin de semana.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">5</b><p class="t">En un mes normal, ¿cuántas personas visitan el lote?</p><p class="why">Es el número que el sistema tiene que mejorar.</p><div class="lines"></div></div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>2 · La publicidad</h2><span>Sin acusar a nadie: solo entender</span></div>
+    <div class="q"><b class="n">6</b><p class="t">¿Cuánto paga al mes por la publicidad? ¿Qué incluye ese pago?</p><p class="why">No sabemos la cifra exacta: creemos que entre 4 y 6 millones.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">7</b><p class="t">¿Le llegan los recibos de Facebook a su nombre? ¿Puede entrar usted a ver la cuenta?</p><p class="why">Si no los ve, no sabe cuánto va de verdad a publicidad.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">8</b><p class="t">¿Le entregan un informe? ¿Qué le cuenta: cuántos escribieron, cuántos visitaron?</p><p class="why">Lo normal es que no tenga números claros.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">9</b><p class="t">De los lotes que vendió este año, ¿cuántos vinieron por la publicidad?</p><p class="why">Si no lo sabe, ahí está el dolor: paga sin saber qué le trae.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">10</b><p class="t">¿Sabe si ahora mismo tiene anuncios funcionando en Facebook e Instagram?</p><p class="why">El 2-nov la Biblioteca de Anuncios mostraba 0 anuncios encendidos. Preguntar sin afirmar; enseñarlo solo si lo pide.</p><div class="lines"></div></div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>3 · Lo que le duele</h2><span>Que lo diga él</span></div>
+    <div class="q"><b class="n">11</b><p class="t">De cómo funcionan hoy las ventas, ¿qué es lo que más le molesta?</p><p class="why">La pregunta más importante. Apuntar su respuesta palabra por palabra.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">12</b><p class="t">¿Le ha pasado que alguien preguntó por un lote y nadie le contestó a tiempo?</p><p class="why">Si dice que sí: «¿Y qué pasó con esa persona?».</p><div class="lines"></div></div>
+    <div class="q"><b class="n">13</b><p class="t">¿Su asesor pierde tiempo con gente que pregunta pero no tiene presupuesto?</p><p class="why">Es lo que resuelve el filtro de Sara.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">14</b><p class="t">¿Se le ha ido algún comprador a otra parcelación? ¿Por qué cree que se fue?</p><p class="why">Le pone cara y nombre a la venta perdida.</p><div class="lines"></div></div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>4 · Lo que está en juego</h2><span>Que vea el valor con sus números</span></div>
+    <div class="q"><b class="n">15</b><p class="t">Si vendiera un lote más al mes, ¿qué significaría para la constructora?</p><p class="why">Con lotes de más de 560 millones, una venta paga muchos meses del sistema.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">16</b><p class="t">Si todo sigue igual seis meses más, ¿qué pasa?</p><p class="why">Silencio después de preguntar. Que lo piense él.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">17</b><p class="t">¿Cuánto tiempo al día pasan usted o su asesor contestando mensajes?</p><p class="why">Tiempo que el sistema les devuelve.</p><div class="lines"></div></div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><h2>5 · Lo que quiere</h2><span>Para cerrar y pasar a la presentación</span></div>
+    <div class="q"><b class="n">18</b><p class="t">Si pudiera cambiar una sola cosa de cómo venden, ¿cuál sería?</p><p class="why">Su respuesta es el primer punto de la propuesta.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">19</b><p class="t">¿Qué tendría que ver en 30 días para decir «esto funciona»?</p><p class="why">Así las metas de la prueba son las suyas.</p><div class="lines"></div></div>
+    <div class="q"><b class="n">20</b><p class="t">Además de usted, ¿quién más decide? ¿Cuándo le vendría bien empezar?</p><p class="why">Saber con quién se firma y la fecha.</p><div class="lines"></div></div>
+  </section>
+
+  <section>
+    <p class="callout">Después de las preguntas: «Con lo que me cuenta, déjeme enseñarle cómo lo resolvemos». Y se pasa a la presentación del Sistema Comprador Listo.</p>
+  </section>
+</main>
