@@ -49,3 +49,13 @@
 - **Los 6 que estaban activos el 28-oct ya no aparecen ni como inactivos:** 755694920154493, 1065970028980418, 846496644762853, 1527045868438053, 2686862044988129 y 1045950361567167. Lo más probable es que se borraran, no que solo se pausaran (sin confirmar).
 - No hay anuncios nuevos de Senderos en otra página con ese nombre.
 - **Hacer:** capturas con fecha de la Biblioteca hoy, como prueba.
+
+## Google Ads, revisado el 2-nov-2026
+- **Anunciante verificado:** Constructora San Esteban S.A.S. (AR06010239176593637377, Colombia). Tiene 8 anuncios, todos hacia senderosdesanjose.com.
+- **7 se vieron el 1 o el 2 de noviembre:** Google sigue encendido mientras Meta está a cero.
+- **Datos incoherentes:**
+  - Los anuncios hablan de 84 u 86 lotes y de la vereda Chuzcala; la web, de 48 lotes en Lejos del Nido.
+  - Un anuncio describe Senderos de Jerez.
+  - Dos anuncios son de agosto de 2022.
+- **Dirección rota:** uno muestra senderosdesanjose.com/proyectos/lotes, que da 404. Comprobar a mano adónde lleva al pulsar.
+- **Pregunta clave para el dueño:** ¿cuánto de lo que paga va a Google? La cuenta de Google Ads es la 350511749.
