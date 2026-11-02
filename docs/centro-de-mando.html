@@ -96,6 +96,19 @@ a.doc strong{font-family:var(--display);font-size:.98rem;display:flex;justify-co
 a.doc strong::after{content:"Abrir →";font-family:var(--mono);font-size:.7rem;color:var(--accent);font-weight:500;white-space:nowrap;padding-top:3px}
 a.doc span{font-size:.86rem;color:var(--muted)}
 a.doc em{font-style:normal;font-family:var(--mono);font-size:.68rem;color:var(--warn)}
+.ficha{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:20px;display:grid;grid-template-columns:200px 1fr;gap:20px}
+.ficha-id{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.avatar{width:72px;height:72px;border-radius:50%;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:2rem}
+.ficha-id h3{font-size:1.4rem}
+.ficha-id span{font-size:.88rem;color:var(--muted)}
+.ficha-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ficha-grid>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ficha-grid h4{margin:0;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+.ficha-grid ul{font-size:.9rem}
+.steps5{display:flex;gap:4px;flex-wrap:wrap}
+.steps5 span{font-size:.75rem;padding:3px 8px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+.steps5 span.cur{border-color:var(--warn);background:var(--warn-soft);color:var(--warn)}
+@media (max-width:860px){.ficha,.ficha-grid{grid-template-columns:1fr}}
 @media (max-width:860px){.today-list,.clients,.docs{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){a.doc{transition:none}}
 </style>
@@ -157,6 +170,55 @@ a.doc em{font-style:normal;font-family:var(--mono);font-size:.68rem;color:var(--
           <div><b>Meta</b><span>Fase 2 tras 2-3 clientes cerrados juntos</span></div>
         </div>
         <div class="price">Reglas: la pauta la paga el cliente · Matías nunca cobra más que Braina · precio firmado antes de cada prueba</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <span class="eyebrow">Ficha del aliado</span>
+    <div class="ficha">
+      <div class="ficha-id">
+        <div class="avatar" aria-hidden="true">M</div>
+        <h3>Matías</h3>
+        <span>Aliado de Braina · gestión de anuncios en Meta</span>
+        <span>17 años, cumple 18 en noviembre. Su agencia aún sin formalizar: firma su padre hasta entonces.</span>
+        <span class="pill">Alta como aliado: hecha</span>
+      </div>
+      <div class="ficha-grid">
+        <div>
+          <h4>Sus clientes</h4>
+          <ul>
+            <li><strong>Senderos de San José</strong> (constructora): prueba de 30 días en preparación.</li>
+            <li><strong>Arango Flowers</strong> (floristería): 87 conversaciones, 0 ventas; 7 días gratis del agente.</li>
+            <li>2 clientes más que ya reciben leads de sus anuncios: presentarles el sistema en noviembre.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Lo acordado</h4>
+          <ul>
+            <li><strong>Su gestión:</strong> 1,5 M/mes por cliente, nunca más que la cuota de Braina.</li>
+            <li><strong>Pauta:</strong> siempre con la tarjeta del cliente, desde su cuenta. Matías entra como socio.</li>
+            <li><strong>Reparto:</strong> quien trae al cliente se lleva el mismo % de lo que vende el otro. Base: 20 % de la implementación + 10 % de la cuota durante 12 meses.</li>
+            <li><strong>Comisión por lote</strong> de la constructora: a negociar con el dueño; el reparto entre los dos, por decidir.</li>
+            <li><strong>Sociedad:</strong> se habla tras 2-3 clientes cerrados juntos.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Su formación</h4>
+          <div class="steps5"><span class="cur">1 · Cuentas y accesos</span><span>2 · Leer números</span><span>3 · Anuncios que venden</span><span>4 · Del chat a la venta</span><span>5 · Informe al cliente</span></div>
+          <ul><li>Llamada de 20 min cada lunes · el primer mes, Daniel revisa cada campaña.</li></ul>
+        </div>
+        <div>
+          <h4>Hitos del caso de éxito</h4>
+          <ul>
+            <li>☐ Primera cuenta de cliente a su nombre, con Matías como socio</li>
+            <li>☐ Primer informe con gasto real y recibos de Meta</li>
+            <li>☐ Primera venta atribuida en la floristería</li>
+            <li>☐ Contrato firmado con la constructora</li>
+            <li>☐ Primer cliente que trae él solo</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
