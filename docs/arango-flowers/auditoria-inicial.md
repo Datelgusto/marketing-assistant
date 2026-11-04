@@ -60,3 +60,34 @@
 - ¿Qué gasto, objetivo, público y coste por conversación tiene la campaña?
 - ¿Quién contesta, en qué horario y con qué mensaje de bienvenida?
 - ¿Tienen catálogo en WhatsApp Business y respuestas rápidas con precio?
+
+## Lo que muestran los chats (5 capturas, revisadas el 4-nov-2026)
+| Chat | Qué pasó | Tiempo de respuesta |
+|---|---|---|
+| 1 | Escribe con el mensaje automático del anuncio («¡Hola! Busco un regalo especial.»). Le contestan «Buenos días»; responde con un 👍 y no sigue. | Al momento (11:46) |
+| 2 | Le mandan el catálogo. Solo llegan audios cortos y «Hola», «Hola»: según Matías, ruido y saludos. | Al momento |
+| 3 | Escribe «buenas tardes» a las 5:54 p. m. Le contestan al día siguiente a las 8:45 a. m. con «Buenos días, ¿cómo estás?». Manda un audio de 3 segundos y no sigue. | **Unas 15 horas** |
+| 4 | Le contestan «Buenas tardes, ¿cómo estás?» y le mandan el enlace al catálogo. Responde «Bueno» y la conversación muere ahí. | Pocos minutos |
+| 5 | Escribe «¡Hola! Busco un regalo especial.» a las 7:18 p. m. Le contestan al día siguiente a las 8:52 a. m. preguntando la ocasión. | **Unas 13 horas y media** |
+
+**Conclusiones:**
+1. **Los que escriben de tarde o de noche esperan hasta el día siguiente** (13-15 h). Para un regalo, esa venta ya se perdió.
+2. **Muchos son curiosos:** mandan el mensaje automático del anuncio, un 👍, «Hola» o un audio de 2-3 segundos. El anuncio no filtra: sin precio, cualquiera pulsa.
+3. **La atención no vende.** Se saluda y se manda el enlace al catálogo entero (165 arreglos, la mitad de más de 430.000). Nadie:
+   - pregunta presupuesto, fecha ni dirección;
+   - ofrece 2-3 opciones con foto y precio;
+   - manda el enlace de pago;
+   - hace seguimiento cuando el cliente se queda callado. Tras «Bueno» o un 👍 no hay nada más.
+4. **Mezclan «tú» y «usted»** en el mismo mensaje.
+5. **En los chats aparece «El uso compartido de datos para las actividades relacionadas con el cliente está desactivado».** Meta no sabe qué conversaciones terminan en venta, así que la campaña no aprende a traer compradores. Se activa en WhatsApp Business: Herramientas para la empresa → Publicidad / compartir datos con Meta.
+
+**Qué cambiar (esta semana):**
+- **Anuncio:** precio a la vista y un mensaje automático que filtre, por ejemplo: «Hola, quiero un arreglo para [ocasión]. Mi presupuesto es de…».
+- **Primera respuesta con plantilla:**
+  1. Saludo.
+  2. «¿Para qué fecha y ocasión lo necesita y qué presupuesto tiene?».
+  3. 3 opciones con foto y precio.
+- **Cierre:** pedir la dirección y la fecha, y mandar el enlace de pago de Bold.
+- **Seguimiento** a las 2 horas y a las 24 horas a quien no contesta.
+- **Fuera de horario:** el agente de Braina contesta al momento (es justo la prueba de 7 días).
+- **Activar** el uso compartido de datos con Meta.
